@@ -1,0 +1,12 @@
+[fixed512] recall@5 = 60.0% (24/40)
+  category=navigation recall@5=80.0%
+  category=semantic recall@5=46.7%
+  category=cross-cutting recall@5=50.0%
+  lsp_trivial=True recall@5=80.0%
+  lsp_trivial=False recall@5=48.0%
+[roslyn] recall@5 = 62.5% (25/40)
+  category=navigation recall@5=86.7%
+  category=semantic recall@5=40.0%
+  category=cross-cutting recall@5=60.0%
+  lsp_trivial=True recall@5=86.7%
+  lsp_trivial=False recall@5=48.0%

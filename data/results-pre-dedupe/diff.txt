@@ -1,0 +1,24 @@
+| id | category | fixed512 | roslyn |
+|---|---|---|---|
+| q03 | navigation | miss | hit |
+| q06 | semantic | hit | miss |
+| q09 | navigation | hit | miss |
+| q11 | cross-cutting | hit | miss |
+| q13 | cross-cutting | miss | hit |
+| q19 | cross-cutting | hit | miss |
+| q20 | navigation | hit | miss |
+| q27 | cross-cutting | miss | hit |
+| q29 | cross-cutting | miss | hit |
+| q36 | navigation | miss | hit |
+| q40 | navigation | miss | hit |
+
+both hit: 19, both miss: 10, fixed512-only: 5, roslyn-only: 6
+
+| category | fixed512 recall | roslyn recall |
+|---|---|---|
+| navigation | 80.0% | 86.7% |
+| semantic | 46.7% | 40.0% |
+| cross-cutting | 50.0% | 60.0% |
+
+fixed512-only questions: q06, q09, q11, q19, q20
+roslyn-only questions: q03, q13, q27, q29, q36, q40

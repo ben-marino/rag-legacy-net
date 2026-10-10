@@ -1,0 +1,522 @@
+[
+  {
+    "Id": "q01",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Core/Services/ContentService.cs",
+      "src/Umbraco.Core/Services/ContentService.cs"
+    ]
+  },
+  {
+    "Id": "q02",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/Templates/TemplateRenderer.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/rollBack.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/republish.aspx.cs"
+    ]
+  },
+  {
+    "Id": "q03",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/Repositories/MediaRepository.cs",
+      "src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs",
+      "src/umbraco.cms/businesslogic/media/UmbracoMediaFactory.cs",
+      "src/Umbraco.Core/Services/MediaServiceExtensions.cs",
+      "src/Umbraco.Core/IO/UmbracoMediaFile.cs"
+    ]
+  },
+  {
+    "Id": "q04",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Security/UserAwareMembershipProviderPasswordHasher.cs",
+      "src/Umbraco.Core/Security/MembershipProviderBase.cs",
+      "src/Umbraco.Web/Security/Providers/UmbracoMembershipProvider.cs",
+      "src/Umbraco.Core/Models/Membership/UmbracoMembershipMember.cs",
+      "src/Umbraco.Web/Models/ChangingPasswordModel.cs"
+    ]
+  },
+  {
+    "Id": "q05",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+      "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+      "src/Umbraco.Web/PublishedContentExtensions.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/ultimatePickerAutoSuggest.asmx.cs",
+      "src/umbraco.cms/businesslogic/utilities/Diff.cs"
+    ]
+  },
+  {
+    "Id": "q06",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/UmbracoDatabase.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs",
+      "src/Umbraco.Core/Persistence/Repositories/AuditRepository.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs"
+    ]
+  },
+  {
+    "Id": "q07",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Persistence/PetaPocoExtensions.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Scoping/Scope.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs"
+    ]
+  },
+  {
+    "Id": "q08",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "src/Umbraco.Core/Persistence/LockingRepository.cs",
+      "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "src/Umbraco.Core/Persistence/UnitOfWork/IScopeUnitOfWorkProvider.cs",
+      "src/Umbraco.Core/Persistence/LockingRepository.cs"
+    ]
+  },
+  {
+    "Id": "q09",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Cache/DistributedCache.cs",
+      "src/Umbraco.Web/Cache/DistributedCache.cs",
+      "src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs",
+      "src/Umbraco.Web/Cache/ApplicationCacheRefresher.cs",
+      "src/Umbraco.Web/Cache/UserGroupPermissionsCacheRefresher.cs"
+    ]
+  },
+  {
+    "Id": "q10",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlCacheFilePersister.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs"
+    ]
+  },
+  {
+    "Id": "q11",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs"
+    ]
+  },
+  {
+    "Id": "q12",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs"
+    ]
+  },
+  {
+    "Id": "q13",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Core/Persistence/Mappers/ContentMapper.cs",
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrl.cs",
+      "src/Umbraco.Web/Routing/ContentLastChanceFinderByNotFoundHandlers.cs"
+    ]
+  },
+  {
+    "Id": "q14",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Publishing/IPublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/BasePublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/BasePublishingStrategy.cs"
+    ]
+  },
+  {
+    "Id": "q15",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Events/EventExtensions.cs",
+      "src/Umbraco.Core/Events/TypedEventHandler.cs",
+      "src/Umbraco.Core/Events/EventDefinition.cs",
+      "src/Umbraco.Core/Events/CancellableEventArgs.cs",
+      "src/Umbraco.Core/Events/EventExtensions.cs"
+    ]
+  },
+  {
+    "Id": "q16",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/media/MediaType.cs",
+      "src/umbraco.cms/businesslogic/CMSNode.cs",
+      "src/umbraco.cms/businesslogic/web/StylesheetProperty.cs",
+      "src/umbraco.cms/businesslogic/member/MemberGroup.cs",
+      "src/umbraco.cms/businesslogic/member/Member.cs"
+    ]
+  },
+  {
+    "Id": "q17",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web.UI/Umbraco/umbraco.aspx.cs",
+      "src/umbraco.businesslogic/BasePages/BasePage.cs",
+      "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+      "src/Umbraco.Web/Routing/NotFoundHandlerHelper.cs",
+      "src/Umbraco.Web/Templates/TemplateRenderer.cs"
+    ]
+  },
+  {
+    "Id": "q18",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Services/ContentService.cs",
+      "src/Umbraco.Web/WebApi/Filters/FileUploadCleanupFilterAttribute.cs",
+      "src/Umbraco.Core/Services/MediaService.cs",
+      "src/umbraco.cms/businesslogic/Content.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs"
+    ]
+  },
+  {
+    "Id": "q19",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/member/MemberGroup.cs",
+      "src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs",
+      "src/umbraco.cms/businesslogic/member/MemberType.cs",
+      "src/Umbraco.Core/Services/PublicAccessService.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs"
+    ]
+  },
+  {
+    "Id": "q20",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+      "src/Umbraco.Core/Models/ContentType.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+      "src/Umbraco.Core/Models/ContentType.cs"
+    ]
+  },
+  {
+    "Id": "q21",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Routing/ContentFinderByRedirectUrl.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+      "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+      "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs"
+    ]
+  },
+  {
+    "Id": "q22",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Mvc/SurfaceController.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web.UI/Umbraco/umbraco.aspx.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs"
+    ]
+  },
+  {
+    "Id": "q23",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Mvc/RenderRouteHandler.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs"
+    ]
+  },
+  {
+    "Id": "q24",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/IDisposeOnRequestEnd.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Web/UmbracoModule.cs"
+    ]
+  },
+  {
+    "Id": "q25",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Core/ApplicationContext.cs",
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Web/UmbracoContext.cs"
+    ]
+  },
+  {
+    "Id": "q26",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/UriExtensions.cs",
+      "src/Umbraco.Core/UriExtensions.cs",
+      "src/umbraco.cms/helpers/url.cs",
+      "src/Umbraco.Core/UriExtensions.cs",
+      "src/Umbraco.Core/UriExtensions.cs"
+    ]
+  },
+  {
+    "Id": "q27",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+      "src/Umbraco.Web/Mvc/UmbracoVirtualNodeRouteHandler.cs",
+      "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+      "src/Umbraco.Web/Mvc/UmbracoMvcHandler.cs"
+    ]
+  },
+  {
+    "Id": "q28",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Cache/UnpublishedPageCacheRefresher.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/actions/delete.aspx.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Core/Services/ContentService.cs"
+    ]
+  },
+  {
+    "Id": "q29",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs"
+    ]
+  },
+  {
+    "Id": "q30",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyValueEditor.cs",
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+      "src/Umbraco.Web/PropertyEditors/ImageCropperPropertyEditor.cs",
+      "src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs"
+    ]
+  },
+  {
+    "Id": "q31",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/MediaController.cs",
+      "src/Umbraco.Web/Editors/MediaController.cs",
+      "src/Umbraco.Web/UmbracoHelper.cs",
+      "src/Umbraco.Core/Services/MediaService.cs",
+      "src/Umbraco.Web/UmbracoHelper.cs"
+    ]
+  },
+  {
+    "Id": "q32",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/ContentPostValidateAttribute.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs",
+      "src/Umbraco.Web.UI/Umbraco/dialogs/ChangeDocType.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/page.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/controls/ContentControl.cs"
+    ]
+  },
+  {
+    "Id": "q33",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Web/Models/ContentEditing/ContentSortOrder.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs"
+    ]
+  },
+  {
+    "Id": "q34",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/umbraco/developer/Xslt/editXslt.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ItemRenderer.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/developer/Xslt/xsltVisualize.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/codeEditorSave.asmx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/create/XsltTasks.cs"
+    ]
+  },
+  {
+    "Id": "q35",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/library.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Core/Persistence/Repositories/ContentRepository.cs",
+      "src/Umbraco.Core/Persistence/Repositories/ContentRepository.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs"
+    ]
+  },
+  {
+    "Id": "q36",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ContentType.cs",
+      "src/Umbraco.Core/Models/Content.cs",
+      "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/create/xslt.ascx.cs",
+      "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.cs"
+    ]
+  },
+  {
+    "Id": "q37",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/DashboardController.cs",
+      "src/Umbraco.Web/Editors/DashboardController.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.cs",
+      "src/Umbraco.Web/Editors/DashboardController.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.designer.cs"
+    ]
+  },
+  {
+    "Id": "q38",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Trees/LegacyTreeDataConverter.cs",
+      "src/Umbraco.Web/Editors/LegacyController.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/ajaxHelpers.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/masterpages/umbracoPage.Master.cs",
+      "src/Umbraco.Web/Trees/LegacyTreeJavascript.cs"
+    ]
+  },
+  {
+    "Id": "q39",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/macro.cs",
+      "src/Umbraco.Core/Macros/MacroTagParser.cs",
+      "src/Umbraco.Web/Editors/MacroController.cs",
+      "src/Umbraco.Core/Macros/MacroTagParser.cs",
+      "src/Umbraco.Web/umbraco.presentation/macro.cs"
+    ]
+  },
+  {
+    "Id": "q40",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/HtmlStringUtilities.cs",
+      "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs",
+      "src/umbraco.cms/businesslogic/Packager/PackageActions/helper.cs",
+      "src/umbraco.cms/helpers/xhtml.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/umbracoField.aspx.cs"
+    ]
+  }
+]
