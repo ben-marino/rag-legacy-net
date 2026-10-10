@@ -1,0 +1,5 @@
+corpus/
+bin/
+obj/
+data/results/
+.env
