@@ -1,0 +1,185 @@
+q03  Where is the MediaService.GetMediaByPath service method, which returns an IMedia for an umbracoFile path such as /media/1024/koala.jpg?
+  correct_files:
+    - src/Umbraco.Core/Services/MediaService.cs
+  fixed512 (Hit=false):
+    1.     src/Umbraco.Core/Persistence/Repositories/MediaRepository.cs
+    2.     src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs
+    3.     src/umbraco.cms/businesslogic/media/UmbracoMediaFactory.cs
+    4.     src/Umbraco.Core/Services/MediaServiceExtensions.cs
+    5.     src/Umbraco.Core/IO/UmbracoMediaFile.cs
+  roslyn (Hit=true):
+    1.     src/Umbraco.Core/Services/IMediaService.cs
+    2. [*] src/Umbraco.Core/Services/MediaService.cs
+    3.     src/Umbraco.Core/Persistence/Repositories/MediaRepository.cs
+    4.     src/Umbraco.Core/Services/IMediaService.cs
+    5.     src/Umbraco.Core/Persistence/Repositories/Interfaces/IMediaRepository.cs
+
+q06  How does the vendored micro-ORM fetch only rows 41 to 60 of a result set, and why does the generated SQL differ between older SQL Server versions, SQL CE and everything else?
+  correct_files:
+    - src/Umbraco.Core/Persistence/PetaPoco.cs
+  fixed512 (Hit=true):
+    1.     src/Umbraco.Core/Persistence/UmbracoDatabase.cs
+    2. [*] src/Umbraco.Core/Persistence/PetaPoco.cs
+    3.     src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs
+    4.     src/Umbraco.Core/Persistence/Repositories/AuditRepository.cs
+    5. [*] src/Umbraco.Core/Persistence/PetaPoco.cs
+  roslyn (Hit=false):
+    1.     src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs
+    2.     src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs
+    3.     src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs
+    4.     src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs
+    5.     src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs
+
+q09  Where is the PageCacheRefresherId GUID constant declared?
+  correct_files:
+    - src/Umbraco.Web/Cache/DistributedCache.cs
+  fixed512 (Hit=true):
+    1. [*] src/Umbraco.Web/Cache/DistributedCache.cs
+    2. [*] src/Umbraco.Web/Cache/DistributedCache.cs
+    3.     src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs
+    4.     src/Umbraco.Web/Cache/ApplicationCacheRefresher.cs
+    5.     src/Umbraco.Web/Cache/UserGroupPermissionsCacheRefresher.cs
+  roslyn (Hit=false):
+    1.     src/Umbraco.Web/Cache/PageCacheRefresher.cs
+    2.     src/Umbraco.Web/umbraco.presentation/umbraco/webservices/CacheRefresher.asmx.cs
+    3.     src/Umbraco.Web/Cache/UnpublishedPageCacheRefresher.cs
+    4.     src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs
+    5.     src/Umbraco.Web/Cache/ApplicationCacheRefresher.cs
+
+q11  After an editor publishes a page, how does the change get from the publish event to every node in a load-balanced cluster and into each node's in-memory XML cache?
+  correct_files:
+    - src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs
+    - src/Umbraco.Web/Cache/DistributedCacheExtensions.cs
+    - src/Umbraco.Web/Cache/PageCacheRefresher.cs
+  fixed512 (Hit=true):
+    1.     src/Umbraco.Web/umbraco.presentation/content.cs
+    2.     src/Umbraco.Web/umbraco.presentation/content.cs
+    3. [*] src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs
+    4.     src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs
+    5.     src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs
+  roslyn (Hit=false):
+    1.     src/Umbraco.Web/umbraco.presentation/content.cs
+    2.     src/Umbraco.Web/umbraco.presentation/content.cs
+    3.     src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs
+    4.     src/Umbraco.Web/Search/ExamineEvents.cs
+    5.     src/Umbraco.Web/umbraco.presentation/content.cs
+
+q13  The published content cache memoises URL-to-node lookups in both directions. Why are some entries kept only one way, usable for building outbound links but never for matching incoming requests?
+  correct_files:
+    - src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs
+    - src/Umbraco.Web/PublishedCache/XmlPublishedCache/RoutesCache.cs
+  fixed512 (Hit=false):
+    1.     src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs
+    2.     src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs
+    3.     src/Umbraco.Core/Persistence/Mappers/ContentMapper.cs
+    4.     src/Umbraco.Web/Routing/ContentFinderByNiceUrl.cs
+    5.     src/Umbraco.Web/Routing/ContentLastChanceFinderByNotFoundHandlers.cs
+  roslyn (Hit=true):
+    1. [*] src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs
+    2. [*] src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs
+    3. [*] src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs
+    4. [*] src/Umbraco.Web/PublishedCache/XmlPublishedCache/RoutesCache.cs
+    5. [*] src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs
+
+q19  If something is saved and then deleted inside the same transaction, why do subscribers to the Saved event never hear about it?
+  correct_files:
+    - src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs
+    - src/Umbraco.Core/Events/DeleteEventArgs.cs
+    - src/Umbraco.Core/Events/SupersedeEventAttribute.cs
+  fixed512 (Hit=true):
+    1.     src/umbraco.cms/businesslogic/member/MemberGroup.cs
+    2. [*] src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs
+    3.     src/umbraco.cms/businesslogic/member/MemberType.cs
+    4.     src/Umbraco.Core/Services/PublicAccessService.cs
+    5.     src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs
+  roslyn (Hit=false):
+    1.     src/Umbraco.Core/Services/MediaService.cs
+    2.     src/Umbraco.Core/Auditing/AuditEventHandler.cs
+    3.     src/Umbraco.Core/Services/PublicAccessService.cs
+    4.     src/Umbraco.Core/Services/MemberService.cs
+    5.     src/Umbraco.Core/Services/ContentService.cs
+
+q20  Which IContentFinder handles URLs of the form /foo/bar/{templateAlias}, assigning the template when the node allows it?
+  correct_files:
+    - src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs
+  fixed512 (Hit=true):
+    1. [*] src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs
+    2. [*] src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs
+    3.     src/Umbraco.Core/Models/ContentType.cs
+    4.     src/Umbraco.Web/Routing/PublishedContentRequest.cs
+    5.     src/Umbraco.Core/Models/ContentType.cs
+  roslyn (Hit=false):
+    1.     src/Umbraco.Core/Services/IFileService.cs
+    2.     src/Umbraco.Web/PublishedContentExtensions.cs
+    3.     src/Umbraco.Core/Models/IContentType.cs
+    4.     src/Umbraco.Core/Persistence/Repositories/Interfaces/ITemplateRepository.cs
+    5.     src/Umbraco.Web/Routing/PublishedContentRequest.cs
+
+q27  For an ordinary front-end request, at which ASP.NET pipeline event does Umbraco take over, and where are the matching page and its template worked out before the request is handed to a handler?
+  correct_files:
+    - src/Umbraco.Web/UmbracoModule.cs
+    - src/Umbraco.Web/Routing/PublishedContentRequest.cs
+    - src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs
+  fixed512 (Hit=false):
+    1.     src/Umbraco.Web/umbraco.presentation/default.aspx.cs
+    2.     src/Umbraco.Web/umbraco.presentation/default.aspx.cs
+    3.     src/Umbraco.Web/Mvc/UmbracoVirtualNodeRouteHandler.cs
+    4.     src/Umbraco.Web/umbraco.presentation/default.aspx.cs
+    5.     src/Umbraco.Web/Mvc/UmbracoMvcHandler.cs
+  roslyn (Hit=true):
+    1. [*] src/Umbraco.Web/UmbracoModule.cs
+    2.     src/Umbraco.Web/umbraco.presentation/requestModule.cs
+    3.     src/Umbraco.Web/umbraco.presentation/default.aspx.cs
+    4. [*] src/Umbraco.Web/UmbracoModule.cs
+    5.     src/Umbraco.Web/umbraco.presentation/default.aspx.cs
+
+q29  Why is a user told a page can't be published because the page above it isn't published, and where is that rule enforced versus where the wording is chosen?
+  correct_files:
+    - src/Umbraco.Core/Services/ContentService.cs
+    - src/Umbraco.Web/Editors/ContentController.cs
+  fixed512 (Hit=false):
+    1.     src/Umbraco.Core/Publishing/PublishingStrategy.cs
+    2.     src/Umbraco.Core/Publishing/PublishingStrategy.cs
+    3.     src/Umbraco.Core/Publishing/PublishingStrategy.cs
+    4.     src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs
+    5.     src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs
+  roslyn (Hit=true):
+    1.     src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs
+    2.     src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs
+    3.     src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs
+    4. [*] src/Umbraco.Web/Editors/ContentController.cs
+    5.     src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs
+
+q36  Where is umbraco.library.ChangeContentType, the XSLT helper that sets Response.ContentType?
+  correct_files:
+    - src/Umbraco.Web/umbraco.presentation/library.cs
+  fixed512 (Hit=false):
+    1.     src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ContentType.cs
+    2.     src/Umbraco.Core/Models/Content.cs
+    3.     src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs
+    4.     src/Umbraco.Web/umbraco.presentation/umbraco/create/xslt.ascx.cs
+    5.     src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.cs
+  roslyn (Hit=true):
+    1. [*] src/Umbraco.Web/umbraco.presentation/library.cs
+    2.     src/Umbraco.Core/Models/Content.cs
+    3.     src/Umbraco.Web/umbraco.presentation/UmbracoResponse.cs
+    4.     src/Umbraco.Core/Models/IContent.cs
+    5.     src/Umbraco.Core/Models/Media.cs
+
+q40  Where is umbraco.library.ReplaceLineBreaks, the XSLT helper that turns text line breaks into HTML <br/> tags?
+  correct_files:
+    - src/Umbraco.Web/umbraco.presentation/library.cs
+  fixed512 (Hit=false):
+    1.     src/Umbraco.Web/HtmlStringUtilities.cs
+    2.     src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs
+    3.     src/umbraco.cms/businesslogic/Packager/PackageActions/helper.cs
+    4.     src/umbraco.cms/helpers/xhtml.cs
+    5.     src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/umbracoField.aspx.cs
+  roslyn (Hit=true):
+    1. [*] src/Umbraco.Web/umbraco.presentation/library.cs
+    2.     src/Umbraco.Web/UmbracoHelper.cs
+    3.     src/Umbraco.Web/HtmlStringUtilities.cs
+    4.     src/umbraco.cms/helpers/xhtml.cs
+    5.     src/Umbraco.Web/HtmlStringUtilities.cs
+
+11 disagreement(s). [*] = correct file

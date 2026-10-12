@@ -1,0 +1,1682 @@
+[
+  {
+    "Id": "q01",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Core/Services/ContentService.cs",
+      "src/Umbraco.Core/Services/ContentService.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 1,
+        "Distance": 0.38969303228884433
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 2,
+        "Distance": 0.4053833150428128
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/ContentController.cs",
+        "Rank": 3,
+        "Distance": 0.4084706037848198
+      },
+      {
+        "File": "src/Umbraco.Core/Services/ContentService.cs",
+        "Rank": 4,
+        "Distance": 0.4100969623580514
+      },
+      {
+        "File": "src/Umbraco.Core/Services/ContentService.cs",
+        "Rank": 5,
+        "Distance": 0.4149929952810282
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q02",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/Templates/TemplateRenderer.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/rollBack.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/republish.aspx.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 1,
+        "Distance": 0.5225993215191698
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 2,
+        "Distance": 0.5319550440608011
+      },
+      {
+        "File": "src/Umbraco.Web/Templates/TemplateRenderer.cs",
+        "Rank": 3,
+        "Distance": 0.5354482635366957
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/rollBack.aspx.cs",
+        "Rank": 4,
+        "Distance": 0.5355860706298482
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/republish.aspx.cs",
+        "Rank": 5,
+        "Distance": 0.57758204094572
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q03",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/Repositories/MediaRepository.cs",
+      "src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs",
+      "src/umbraco.cms/businesslogic/media/UmbracoMediaFactory.cs",
+      "src/Umbraco.Core/Services/MediaServiceExtensions.cs",
+      "src/Umbraco.Core/IO/UmbracoMediaFile.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/MediaRepository.cs",
+        "Rank": 1,
+        "Distance": 0.31583358238082326
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs",
+        "Rank": 2,
+        "Distance": 0.38116193586920755
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/media/UmbracoMediaFactory.cs",
+        "Rank": 3,
+        "Distance": 0.39267552435125896
+      },
+      {
+        "File": "src/Umbraco.Core/Services/MediaServiceExtensions.cs",
+        "Rank": 4,
+        "Distance": 0.39629034161935406
+      },
+      {
+        "File": "src/Umbraco.Core/IO/UmbracoMediaFile.cs",
+        "Rank": 5,
+        "Distance": 0.39816703637143436
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q04",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Security/UserAwareMembershipProviderPasswordHasher.cs",
+      "src/Umbraco.Core/Security/MembershipProviderBase.cs",
+      "src/Umbraco.Web/Security/Providers/UmbracoMembershipProvider.cs",
+      "src/Umbraco.Core/Models/Membership/UmbracoMembershipMember.cs",
+      "src/Umbraco.Web/Models/ChangingPasswordModel.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Security/UserAwareMembershipProviderPasswordHasher.cs",
+        "Rank": 1,
+        "Distance": 0.39162099273391815
+      },
+      {
+        "File": "src/Umbraco.Core/Security/MembershipProviderBase.cs",
+        "Rank": 2,
+        "Distance": 0.3940017613084402
+      },
+      {
+        "File": "src/Umbraco.Web/Security/Providers/UmbracoMembershipProvider.cs",
+        "Rank": 3,
+        "Distance": 0.39463698024409366
+      },
+      {
+        "File": "src/Umbraco.Core/Models/Membership/UmbracoMembershipMember.cs",
+        "Rank": 4,
+        "Distance": 0.39874548454868997
+      },
+      {
+        "File": "src/Umbraco.Web/Models/ChangingPasswordModel.cs",
+        "Rank": 5,
+        "Distance": 0.3987500233063499
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q05",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+      "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+      "src/Umbraco.Web/PublishedContentExtensions.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/ultimatePickerAutoSuggest.asmx.cs",
+      "src/umbraco.cms/businesslogic/utilities/Diff.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+        "Rank": 1,
+        "Distance": 0.5910549094581787
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+        "Rank": 2,
+        "Distance": 0.6143719534284608
+      },
+      {
+        "File": "src/Umbraco.Web/PublishedContentExtensions.cs",
+        "Rank": 3,
+        "Distance": 0.6298952475475594
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/ultimatePickerAutoSuggest.asmx.cs",
+        "Rank": 4,
+        "Distance": 0.6312099798057207
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/utilities/Diff.cs",
+        "Rank": 5,
+        "Distance": 0.648665382937049
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q06",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/UmbracoDatabase.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs",
+      "src/Umbraco.Core/Persistence/Repositories/AuditRepository.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Persistence/UmbracoDatabase.cs",
+        "Rank": 1,
+        "Distance": 0.5159517489685859
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+        "Rank": 2,
+        "Distance": 0.5349072948480785
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/VersionableRepositoryBase.cs",
+        "Rank": 3,
+        "Distance": 0.5407701417046736
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/AuditRepository.cs",
+        "Rank": 4,
+        "Distance": 0.5565433238060062
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+        "Rank": 5,
+        "Distance": 0.5639449952010867
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q07",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Persistence/PetaPocoExtensions.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Scoping/Scope.cs",
+      "src/Umbraco.Core/Persistence/PetaPoco.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+        "Rank": 1,
+        "Distance": 0.36149413914256845
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/PetaPocoExtensions.cs",
+        "Rank": 2,
+        "Distance": 0.5051024903695682
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+        "Rank": 3,
+        "Distance": 0.5226109667501003
+      },
+      {
+        "File": "src/Umbraco.Core/Scoping/Scope.cs",
+        "Rank": 4,
+        "Distance": 0.5355111276235766
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+        "Rank": 5,
+        "Distance": 0.5373285816050843
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q08",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "src/Umbraco.Core/Persistence/LockingRepository.cs",
+      "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "src/Umbraco.Core/Persistence/UnitOfWork/IScopeUnitOfWorkProvider.cs",
+      "src/Umbraco.Core/Persistence/LockingRepository.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+        "Rank": 1,
+        "Distance": 0.43853435753316095
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/LockingRepository.cs",
+        "Rank": 2,
+        "Distance": 0.472458070965347
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+        "Rank": 3,
+        "Distance": 0.4832780324098167
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/UnitOfWork/IScopeUnitOfWorkProvider.cs",
+        "Rank": 4,
+        "Distance": 0.4898324003106622
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/LockingRepository.cs",
+        "Rank": 5,
+        "Distance": 0.4906270460429589
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q09",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Cache/DistributedCache.cs",
+      "src/Umbraco.Web/Cache/DistributedCache.cs",
+      "src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs",
+      "src/Umbraco.Web/Cache/ApplicationCacheRefresher.cs",
+      "src/Umbraco.Web/Cache/UserGroupPermissionsCacheRefresher.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Cache/DistributedCache.cs",
+        "Rank": 1,
+        "Distance": 0.3477781431138458
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/DistributedCache.cs",
+        "Rank": 2,
+        "Distance": 0.3865043048100476
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs",
+        "Rank": 3,
+        "Distance": 0.4063618323957682
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/ApplicationCacheRefresher.cs",
+        "Rank": 4,
+        "Distance": 0.40801411211300276
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/UserGroupPermissionsCacheRefresher.cs",
+        "Rank": 5,
+        "Distance": 0.41792383809104305
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q10",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlCacheFilePersister.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/content.cs",
+        "Rank": 1,
+        "Distance": 0.48466958769312307
+      },
+      {
+        "File": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlCacheFilePersister.cs",
+        "Rank": 2,
+        "Distance": 0.5161836724257729
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+        "Rank": 3,
+        "Distance": 0.5191966061032538
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/content.cs",
+        "Rank": 4,
+        "Distance": 0.5290320605675068
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/content.cs",
+        "Rank": 5,
+        "Distance": 0.5473163857075078
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q11",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/content.cs",
+        "Rank": 1,
+        "Distance": 0.4339586699928937
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+        "Rank": 2,
+        "Distance": 0.4801562910769356
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/content.cs",
+        "Rank": 3,
+        "Distance": 0.4801697133161005
+      },
+      {
+        "File": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs",
+        "Rank": 4,
+        "Distance": 0.4897490114555053
+      },
+      {
+        "File": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlPublishedContent.cs",
+        "Rank": 5,
+        "Distance": 0.5087366871437762
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q12",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+        "Rank": 1,
+        "Distance": 0.37762143862276076
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+        "Rank": 2,
+        "Distance": 0.3895934073029941
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+        "Rank": 3,
+        "Distance": 0.4007325602076819
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+        "Rank": 4,
+        "Distance": 0.4252997151011014
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/PublicAccessCacheRefresher.cs",
+        "Rank": 5,
+        "Distance": 0.4289738525917586
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q13",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Core/Persistence/Mappers/ContentMapper.cs",
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrl.cs",
+      "src/Umbraco.Web/Routing/ContentLastChanceFinderByNotFoundHandlers.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+        "Rank": 1,
+        "Distance": 0.5089914233125082
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+        "Rank": 2,
+        "Distance": 0.5099332339408668
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/Mappers/ContentMapper.cs",
+        "Rank": 3,
+        "Distance": 0.5124192064857074
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/ContentFinderByNiceUrl.cs",
+        "Rank": 4,
+        "Distance": 0.5163560943127985
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/ContentLastChanceFinderByNotFoundHandlers.cs",
+        "Rank": 5,
+        "Distance": 0.5257742368460001
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q14",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Publishing/IPublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/BasePublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/BasePublishingStrategy.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Publishing/IPublishingStrategy.cs",
+        "Rank": 1,
+        "Distance": 0.34363560762142553
+      },
+      {
+        "File": "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+        "Rank": 2,
+        "Distance": 0.3467601645352065
+      },
+      {
+        "File": "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+        "Rank": 3,
+        "Distance": 0.3557287420233858
+      },
+      {
+        "File": "src/Umbraco.Core/Publishing/BasePublishingStrategy.cs",
+        "Rank": 4,
+        "Distance": 0.36075338275973257
+      },
+      {
+        "File": "src/Umbraco.Core/Publishing/BasePublishingStrategy.cs",
+        "Rank": 5,
+        "Distance": 0.366872678718802
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q15",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Events/EventExtensions.cs",
+      "src/Umbraco.Core/Events/TypedEventHandler.cs",
+      "src/Umbraco.Core/Events/EventDefinition.cs",
+      "src/Umbraco.Core/Events/CancellableEventArgs.cs",
+      "src/Umbraco.Core/Events/EventExtensions.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Events/EventExtensions.cs",
+        "Rank": 1,
+        "Distance": 0.3795351258245935
+      },
+      {
+        "File": "src/Umbraco.Core/Events/TypedEventHandler.cs",
+        "Rank": 2,
+        "Distance": 0.4773435609734634
+      },
+      {
+        "File": "src/Umbraco.Core/Events/EventDefinition.cs",
+        "Rank": 3,
+        "Distance": 0.503008313243504
+      },
+      {
+        "File": "src/Umbraco.Core/Events/CancellableEventArgs.cs",
+        "Rank": 4,
+        "Distance": 0.5049772969102431
+      },
+      {
+        "File": "src/Umbraco.Core/Events/EventExtensions.cs",
+        "Rank": 5,
+        "Distance": 0.5091437253935855
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q16",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/media/MediaType.cs",
+      "src/umbraco.cms/businesslogic/CMSNode.cs",
+      "src/umbraco.cms/businesslogic/web/StylesheetProperty.cs",
+      "src/umbraco.cms/businesslogic/member/MemberGroup.cs",
+      "src/umbraco.cms/businesslogic/member/Member.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/umbraco.cms/businesslogic/media/MediaType.cs",
+        "Rank": 1,
+        "Distance": 0.4273081392318102
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/CMSNode.cs",
+        "Rank": 2,
+        "Distance": 0.4285915813708773
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/StylesheetProperty.cs",
+        "Rank": 3,
+        "Distance": 0.4354707034644446
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/member/MemberGroup.cs",
+        "Rank": 4,
+        "Distance": 0.45023688381213667
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/member/Member.cs",
+        "Rank": 5,
+        "Distance": 0.46781630274913477
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q17",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web.UI/Umbraco/umbraco.aspx.cs",
+      "src/umbraco.businesslogic/BasePages/BasePage.cs",
+      "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+      "src/Umbraco.Web/Routing/NotFoundHandlerHelper.cs",
+      "src/Umbraco.Web/Templates/TemplateRenderer.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web.UI/Umbraco/umbraco.aspx.cs",
+        "Rank": 1,
+        "Distance": 0.45154141476953114
+      },
+      {
+        "File": "src/umbraco.businesslogic/BasePages/BasePage.cs",
+        "Rank": 2,
+        "Distance": 0.48293179838405
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+        "Rank": 3,
+        "Distance": 0.48368091035076843
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/NotFoundHandlerHelper.cs",
+        "Rank": 4,
+        "Distance": 0.48896306245051024
+      },
+      {
+        "File": "src/Umbraco.Web/Templates/TemplateRenderer.cs",
+        "Rank": 5,
+        "Distance": 0.4903804562700723
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q18",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Services/ContentService.cs",
+      "src/Umbraco.Web/WebApi/Filters/FileUploadCleanupFilterAttribute.cs",
+      "src/Umbraco.Core/Services/MediaService.cs",
+      "src/umbraco.cms/businesslogic/Content.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Services/ContentService.cs",
+        "Rank": 1,
+        "Distance": 0.5006296742745964
+      },
+      {
+        "File": "src/Umbraco.Web/WebApi/Filters/FileUploadCleanupFilterAttribute.cs",
+        "Rank": 2,
+        "Distance": 0.5042791487256201
+      },
+      {
+        "File": "src/Umbraco.Core/Services/MediaService.cs",
+        "Rank": 3,
+        "Distance": 0.5063890857780071
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/Content.cs",
+        "Rank": 4,
+        "Distance": 0.5071039099007817
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 5,
+        "Distance": 0.508242659253727
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q19",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/umbraco.cms/businesslogic/member/MemberGroup.cs",
+      "src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs",
+      "src/umbraco.cms/businesslogic/member/MemberType.cs",
+      "src/Umbraco.Core/Services/PublicAccessService.cs",
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/umbraco.cms/businesslogic/member/MemberGroup.cs",
+        "Rank": 1,
+        "Distance": 0.5314114459791877
+      },
+      {
+        "File": "src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs",
+        "Rank": 2,
+        "Distance": 0.5394136302988632
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/member/MemberType.cs",
+        "Rank": 3,
+        "Distance": 0.547950759084282
+      },
+      {
+        "File": "src/Umbraco.Core/Services/PublicAccessService.cs",
+        "Rank": 4,
+        "Distance": 0.5483447135620074
+      },
+      {
+        "File": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+        "Rank": 5,
+        "Distance": 0.5516565381365661
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q20",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+      "src/Umbraco.Core/Models/ContentType.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+      "src/Umbraco.Core/Models/ContentType.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+        "Rank": 1,
+        "Distance": 0.346187570747315
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+        "Rank": 2,
+        "Distance": 0.3881468096885734
+      },
+      {
+        "File": "src/Umbraco.Core/Models/ContentType.cs",
+        "Rank": 3,
+        "Distance": 0.45730742870277785
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+        "Rank": 4,
+        "Distance": 0.46583451716790913
+      },
+      {
+        "File": "src/Umbraco.Core/Models/ContentType.cs",
+        "Rank": 5,
+        "Distance": 0.4781757879088331
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q21",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Routing/ContentFinderByRedirectUrl.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+      "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+      "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Routing/ContentFinderByRedirectUrl.cs",
+        "Rank": 1,
+        "Distance": 0.5161418224407711
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoModule.cs",
+        "Rank": 2,
+        "Distance": 0.5197159632920345
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+        "Rank": 3,
+        "Distance": 0.5263895068220199
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+        "Rank": 4,
+        "Distance": 0.5330819671883468
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/NotFoundHandlers.cs",
+        "Rank": 5,
+        "Distance": 0.5469625483031265
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q22",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Mvc/SurfaceController.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web.UI/Umbraco/umbraco.aspx.cs",
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Mvc/SurfaceController.cs",
+        "Rank": 1,
+        "Distance": 0.5641267804777756
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 2,
+        "Distance": 0.5700618669488788
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+        "Rank": 3,
+        "Distance": 0.5715362398095676
+      },
+      {
+        "File": "src/Umbraco.Web.UI/Umbraco/umbraco.aspx.cs",
+        "Rank": 4,
+        "Distance": 0.5737665049115854
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+        "Rank": 5,
+        "Distance": 0.5742210306677046
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q23",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Mvc/RenderRouteHandler.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Mvc/RenderRouteHandler.cs",
+        "Rank": 1,
+        "Distance": 0.3671712453082019
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+        "Rank": 2,
+        "Distance": 0.38638629110448963
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+        "Rank": 3,
+        "Distance": 0.4246927093065793
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+        "Rank": 4,
+        "Distance": 0.444369423631898
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+        "Rank": 5,
+        "Distance": 0.4501770730410596
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q24",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/IDisposeOnRequestEnd.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Web/UmbracoModule.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/IDisposeOnRequestEnd.cs",
+        "Rank": 1,
+        "Distance": 0.2929929279767921
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoModule.cs",
+        "Rank": 2,
+        "Distance": 0.296536084250724
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoModule.cs",
+        "Rank": 3,
+        "Distance": 0.35073647299203203
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoContext.cs",
+        "Rank": 4,
+        "Distance": 0.43102419376098033
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoModule.cs",
+        "Rank": 5,
+        "Distance": 0.43261707030368135
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q25",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Core/ApplicationContext.cs",
+      "src/Umbraco.Web/UmbracoContext.cs",
+      "src/Umbraco.Web/UmbracoContext.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/UmbracoContext.cs",
+        "Rank": 1,
+        "Distance": 0.2973206391658575
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoContext.cs",
+        "Rank": 2,
+        "Distance": 0.37165959412129823
+      },
+      {
+        "File": "src/Umbraco.Core/ApplicationContext.cs",
+        "Rank": 3,
+        "Distance": 0.38894342524676184
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoContext.cs",
+        "Rank": 4,
+        "Distance": 0.3968577554376952
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoContext.cs",
+        "Rank": 5,
+        "Distance": 0.42058467276591605
+      }
+    ],
+    "DistinctFilesInTopN": 2,
+    "Dedupe": false
+  },
+  {
+    "Id": "q26",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/UriExtensions.cs",
+      "src/Umbraco.Core/UriExtensions.cs",
+      "src/umbraco.cms/helpers/url.cs",
+      "src/Umbraco.Core/UriExtensions.cs",
+      "src/Umbraco.Core/UriExtensions.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/UriExtensions.cs",
+        "Rank": 1,
+        "Distance": 0.3999586929743817
+      },
+      {
+        "File": "src/Umbraco.Core/UriExtensions.cs",
+        "Rank": 2,
+        "Distance": 0.4104610355459246
+      },
+      {
+        "File": "src/umbraco.cms/helpers/url.cs",
+        "Rank": 3,
+        "Distance": 0.41150961619750115
+      },
+      {
+        "File": "src/Umbraco.Core/UriExtensions.cs",
+        "Rank": 4,
+        "Distance": 0.4152637500552875
+      },
+      {
+        "File": "src/Umbraco.Core/UriExtensions.cs",
+        "Rank": 5,
+        "Distance": 0.4264540988628127
+      }
+    ],
+    "DistinctFilesInTopN": 2,
+    "Dedupe": false
+  },
+  {
+    "Id": "q27",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+      "src/Umbraco.Web/Mvc/UmbracoVirtualNodeRouteHandler.cs",
+      "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+      "src/Umbraco.Web/Mvc/UmbracoMvcHandler.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+        "Rank": 1,
+        "Distance": 0.39472653201765895
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+        "Rank": 2,
+        "Distance": 0.3975897546577256
+      },
+      {
+        "File": "src/Umbraco.Web/Mvc/UmbracoVirtualNodeRouteHandler.cs",
+        "Rank": 3,
+        "Distance": 0.3990824913627036
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/default.aspx.cs",
+        "Rank": 4,
+        "Distance": 0.4011542979312347
+      },
+      {
+        "File": "src/Umbraco.Web/Mvc/UmbracoMvcHandler.cs",
+        "Rank": 5,
+        "Distance": 0.4056730609395952
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q28",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Cache/UnpublishedPageCacheRefresher.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/actions/delete.aspx.cs",
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Core/Services/ContentService.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Cache/UnpublishedPageCacheRefresher.cs",
+        "Rank": 1,
+        "Distance": 0.5934982499880638
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 2,
+        "Distance": 0.5961455546477084
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/actions/delete.aspx.cs",
+        "Rank": 3,
+        "Distance": 0.6069670038971573
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoModule.cs",
+        "Rank": 4,
+        "Distance": 0.6103164723600996
+      },
+      {
+        "File": "src/Umbraco.Core/Services/ContentService.cs",
+        "Rank": 5,
+        "Distance": 0.6103268874296621
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q29",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+        "Rank": 1,
+        "Distance": 0.4956429573521087
+      },
+      {
+        "File": "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+        "Rank": 2,
+        "Distance": 0.5219523247481455
+      },
+      {
+        "File": "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+        "Rank": 3,
+        "Distance": 0.5403280445054501
+      },
+      {
+        "File": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+        "Rank": 4,
+        "Distance": 0.5449324941983901
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs",
+        "Rank": 5,
+        "Distance": 0.5613098176712126
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q30",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyValueEditor.cs",
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+      "src/Umbraco.Web/PropertyEditors/ImageCropperPropertyEditor.cs",
+      "src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/PropertyEditors/FileUploadPropertyValueEditor.cs",
+        "Rank": 1,
+        "Distance": 0.5650967809963504
+      },
+      {
+        "File": "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+        "Rank": 2,
+        "Distance": 0.5769499393342865
+      },
+      {
+        "File": "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+        "Rank": 3,
+        "Distance": 0.5793234259703435
+      },
+      {
+        "File": "src/Umbraco.Web/PropertyEditors/ImageCropperPropertyEditor.cs",
+        "Rank": 4,
+        "Distance": 0.5802754302488522
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/media/UmbracoFileMediaFactory.cs",
+        "Rank": 5,
+        "Distance": 0.5904726408392749
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q31",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/MediaController.cs",
+      "src/Umbraco.Web/Editors/MediaController.cs",
+      "src/Umbraco.Web/UmbracoHelper.cs",
+      "src/Umbraco.Core/Services/MediaService.cs",
+      "src/Umbraco.Web/UmbracoHelper.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Editors/MediaController.cs",
+        "Rank": 1,
+        "Distance": 0.3303174959948545
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/MediaController.cs",
+        "Rank": 2,
+        "Distance": 0.40325888999736526
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoHelper.cs",
+        "Rank": 3,
+        "Distance": 0.4158593408692698
+      },
+      {
+        "File": "src/Umbraco.Core/Services/MediaService.cs",
+        "Rank": 4,
+        "Distance": 0.442885772207101
+      },
+      {
+        "File": "src/Umbraco.Web/UmbracoHelper.cs",
+        "Rank": 5,
+        "Distance": 0.4680131558043825
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q32",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/ContentPostValidateAttribute.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs",
+      "src/Umbraco.Web.UI/Umbraco/dialogs/ChangeDocType.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/page.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/controls/ContentControl.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Editors/ContentPostValidateAttribute.cs",
+        "Rank": 1,
+        "Distance": 0.4956059487050406
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/actions/publish.aspx.cs",
+        "Rank": 2,
+        "Distance": 0.49811205938685155
+      },
+      {
+        "File": "src/Umbraco.Web.UI/Umbraco/dialogs/ChangeDocType.aspx.cs",
+        "Rank": 3,
+        "Distance": 0.5121576392138065
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/page.cs",
+        "Rank": 4,
+        "Distance": 0.5154531475109323
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/controls/ContentControl.cs",
+        "Rank": 5,
+        "Distance": 0.5190504582950366
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q33",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Web/Models/ContentEditing/ContentSortOrder.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Editors/ContentController.cs",
+        "Rank": 1,
+        "Distance": 0.4328204818845547
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/ContentController.cs",
+        "Rank": 2,
+        "Distance": 0.43528427605011943
+      },
+      {
+        "File": "src/Umbraco.Web/Models/ContentEditing/ContentSortOrder.cs",
+        "Rank": 3,
+        "Distance": 0.4434386549518524
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/ContentController.cs",
+        "Rank": 4,
+        "Distance": 0.4506908283322365
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/ContentController.cs",
+        "Rank": 5,
+        "Distance": 0.4639400937992585
+      }
+    ],
+    "DistinctFilesInTopN": 2,
+    "Dedupe": false
+  },
+  {
+    "Id": "q34",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/umbraco/developer/Xslt/editXslt.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ItemRenderer.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/developer/Xslt/xsltVisualize.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/codeEditorSave.asmx.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/create/XsltTasks.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/developer/Xslt/editXslt.aspx.cs",
+        "Rank": 1,
+        "Distance": 0.4712969846386965
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ItemRenderer.cs",
+        "Rank": 2,
+        "Distance": 0.48115949328161867
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/developer/Xslt/xsltVisualize.aspx.cs",
+        "Rank": 3,
+        "Distance": 0.4840070869726586
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/codeEditorSave.asmx.cs",
+        "Rank": 4,
+        "Distance": 0.4925096993868524
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/create/XsltTasks.cs",
+        "Rank": 5,
+        "Distance": 0.5063900552664513
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q35",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/library.cs",
+      "src/umbraco.cms/businesslogic/web/Document.cs",
+      "src/Umbraco.Core/Persistence/Repositories/ContentRepository.cs",
+      "src/Umbraco.Core/Persistence/Repositories/ContentRepository.cs",
+      "src/Umbraco.Web/umbraco.presentation/content.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/library.cs",
+        "Rank": 1,
+        "Distance": 0.4823307891426679
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/web/Document.cs",
+        "Rank": 2,
+        "Distance": 0.5076568194887499
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/ContentRepository.cs",
+        "Rank": 3,
+        "Distance": 0.5160921317091891
+      },
+      {
+        "File": "src/Umbraco.Core/Persistence/Repositories/ContentRepository.cs",
+        "Rank": 4,
+        "Distance": 0.5196305465114426
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/content.cs",
+        "Rank": 5,
+        "Distance": 0.5255076991514125
+      }
+    ],
+    "DistinctFilesInTopN": 4,
+    "Dedupe": false
+  },
+  {
+    "Id": "q36",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ContentType.cs",
+      "src/Umbraco.Core/Models/Content.cs",
+      "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/create/xslt.ascx.cs",
+      "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/templateControls/ContentType.cs",
+        "Rank": 1,
+        "Distance": 0.4394545074919294
+      },
+      {
+        "File": "src/Umbraco.Core/Models/Content.cs",
+        "Rank": 2,
+        "Distance": 0.4922843741586781
+      },
+      {
+        "File": "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs",
+        "Rank": 3,
+        "Distance": 0.4937849960894156
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/create/xslt.ascx.cs",
+        "Rank": 4,
+        "Distance": 0.49468813157837666
+      },
+      {
+        "File": "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.cs",
+        "Rank": 5,
+        "Distance": 0.5051721355738857
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q37",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Editors/DashboardController.cs",
+      "src/Umbraco.Web/Editors/DashboardController.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.cs",
+      "src/Umbraco.Web/Editors/DashboardController.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.designer.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Editors/DashboardController.cs",
+        "Rank": 1,
+        "Distance": 0.5117524492774903
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/DashboardController.cs",
+        "Rank": 2,
+        "Distance": 0.5386903342478393
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.cs",
+        "Rank": 3,
+        "Distance": 0.5512305072877484
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/DashboardController.cs",
+        "Rank": 4,
+        "Distance": 0.5702297757295623
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.designer.cs",
+        "Rank": 5,
+        "Distance": 0.6014950481357284
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q38",
+    "Category": "semantic",
+    "LspTrivial": false,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/Trees/LegacyTreeDataConverter.cs",
+      "src/Umbraco.Web/Editors/LegacyController.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/ajaxHelpers.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/masterpages/umbracoPage.Master.cs",
+      "src/Umbraco.Web/Trees/LegacyTreeJavascript.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/Trees/LegacyTreeDataConverter.cs",
+        "Rank": 1,
+        "Distance": 0.557937017637952
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/LegacyController.cs",
+        "Rank": 2,
+        "Distance": 0.5582570448195464
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/webservices/ajaxHelpers.cs",
+        "Rank": 3,
+        "Distance": 0.5666399686241045
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/masterpages/umbracoPage.Master.cs",
+        "Rank": 4,
+        "Distance": 0.5696068375145278
+      },
+      {
+        "File": "src/Umbraco.Web/Trees/LegacyTreeJavascript.cs",
+        "Rank": 5,
+        "Distance": 0.5782043173468578
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  },
+  {
+    "Id": "q39",
+    "Category": "cross-cutting",
+    "LspTrivial": false,
+    "Hit": true,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/umbraco.presentation/macro.cs",
+      "src/Umbraco.Core/Macros/MacroTagParser.cs",
+      "src/Umbraco.Web/Editors/MacroController.cs",
+      "src/Umbraco.Core/Macros/MacroTagParser.cs",
+      "src/Umbraco.Web/umbraco.presentation/macro.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/macro.cs",
+        "Rank": 1,
+        "Distance": 0.4113975915525452
+      },
+      {
+        "File": "src/Umbraco.Core/Macros/MacroTagParser.cs",
+        "Rank": 2,
+        "Distance": 0.4475347820572474
+      },
+      {
+        "File": "src/Umbraco.Web/Editors/MacroController.cs",
+        "Rank": 3,
+        "Distance": 0.45254719482034267
+      },
+      {
+        "File": "src/Umbraco.Core/Macros/MacroTagParser.cs",
+        "Rank": 4,
+        "Distance": 0.4537702130794854
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/macro.cs",
+        "Rank": 5,
+        "Distance": 0.45657811528053327
+      }
+    ],
+    "DistinctFilesInTopN": 3,
+    "Dedupe": false
+  },
+  {
+    "Id": "q40",
+    "Category": "navigation",
+    "LspTrivial": true,
+    "Hit": false,
+    "TopKFilePaths": [
+      "src/Umbraco.Web/HtmlStringUtilities.cs",
+      "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs",
+      "src/umbraco.cms/businesslogic/Packager/PackageActions/helper.cs",
+      "src/umbraco.cms/helpers/xhtml.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/umbracoField.aspx.cs"
+    ],
+    "TopKChunks": [
+      {
+        "File": "src/Umbraco.Web/HtmlStringUtilities.cs",
+        "Rank": 1,
+        "Distance": 0.36918897974019804
+      },
+      {
+        "File": "src/Umbraco.Web.UI/Umbraco/create/xslt.ascx.designer.cs",
+        "Rank": 2,
+        "Distance": 0.4448819960428352
+      },
+      {
+        "File": "src/umbraco.cms/businesslogic/Packager/PackageActions/helper.cs",
+        "Rank": 3,
+        "Distance": 0.4569698888036642
+      },
+      {
+        "File": "src/umbraco.cms/helpers/xhtml.cs",
+        "Rank": 4,
+        "Distance": 0.45974864790633563
+      },
+      {
+        "File": "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/umbracoField.aspx.cs",
+        "Rank": 5,
+        "Distance": 0.46132251790980816
+      }
+    ],
+    "DistinctFilesInTopN": 5,
+    "Dedupe": false
+  }
+]
