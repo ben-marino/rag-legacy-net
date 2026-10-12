@@ -13,14 +13,14 @@ public static class EvalCommand
             ?? throw new ArgumentException("eval requires --strategy fixed512|roslyn|both");
         int k = int.TryParse(ArgsHelper.GetOption(args, "--k"), out var parsedK) ? parsedK : 5;
         bool dedupe = ArgsHelper.HasFlag(args, "--dedupe");
+        bool refreshEmbeddings = ArgsHelper.HasFlag(args, "--refresh-embeddings");
 
         var strategies = IndexCommand.ResolveStrategies(strategyArg);
         var golden = GoldenLoader.Load(Config.GoldenPath);
 
         await using var store = await PgStore.ConnectAsync(Config.ConnectionString);
-        using var embedder = new OpenAiEmbeddingClient(Config.OpenAiApiKey);
 
-        var questionEmbeddings = await embedder.EmbedAsync(golden.Select(q => q.Question).ToList());
+        var questionEmbeddings = await LoadQuestionEmbeddingsAsync(golden, refreshEmbeddings);
 
         foreach (var strategy in strategies)
         {
@@ -39,6 +39,42 @@ public static class EvalCommand
         }
 
         return 0;
+    }
+
+    /// <summary>
+    /// Returns one vector per golden question, in golden order. Vectors come from
+    /// data/question-embeddings.json when present for the current model; anything missing
+    /// (or everything, with --refresh-embeddings) is fetched from the API and written back.
+    /// </summary>
+    private static async Task<List<float[]>> LoadQuestionEmbeddingsAsync(
+        IReadOnlyList<GoldenQuestion> golden, bool refresh)
+    {
+        var cachePath = QuestionEmbeddingCache.DefaultPath;
+        var cache = refresh
+            ? new SortedDictionary<string, CachedEmbedding>(StringComparer.Ordinal)
+            : QuestionEmbeddingCache.Load(cachePath);
+
+        var missing = golden
+            .Where(q => !cache.TryGetValue(q.Id, out var e) || e.Model != OpenAiEmbeddingClient.Model)
+            .ToList();
+
+        if (missing.Count > 0)
+        {
+            using var embedder = new OpenAiEmbeddingClient(Config.OpenAiApiKey);
+            var vectors = await embedder.EmbedAsync(missing.Select(q => q.Question).ToList());
+            for (int i = 0; i < missing.Count; i++)
+                cache[missing[i].Id] = new CachedEmbedding(OpenAiEmbeddingClient.Model, vectors[i]);
+
+            await QuestionEmbeddingCache.WriteAsync(cachePath, cache);
+            Console.Error.WriteLine(
+                $"question embeddings: fetched {missing.Count}, cached {golden.Count - missing.Count} ({cachePath})");
+        }
+        else
+        {
+            Console.Error.WriteLine($"question embeddings: all {golden.Count} from cache ({cachePath})");
+        }
+
+        return golden.Select(q => cache[q.Id].Vector).ToList();
     }
 
     private static void PrintSummary(string strategy, List<QuestionResult> results, int k, bool dedupe)

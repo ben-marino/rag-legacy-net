@@ -49,7 +49,7 @@ first run if they don't exist.
 
 ```
 dotnet run --project src/RagAblation -- index --strategy fixed512|roslyn|both
-dotnet run --project src/RagAblation -- eval  --strategy fixed512|roslyn|both [--k 5] [--dedupe]
+dotnet run --project src/RagAblation -- eval  --strategy fixed512|roslyn|both [--k 5] [--dedupe] [--refresh-embeddings]
 dotnet run --project src/RagAblation -- diff [--dedupe]
 dotnet run --project src/RagAblation -- compare [--k 5]
 ```
@@ -59,7 +59,10 @@ dotnet run --project src/RagAblation -- compare [--k 5]
 - `eval` embeds each question in `data/golden.json`, takes the top-k chunks by cosine
   distance, and counts a hit if any of the question's `correct_files` appears among the
   top-k chunks' file paths. Writes `data/results/{strategy}.json` and prints recall@k
-  overall, per category, and split by `lsp_trivial`.
+  overall, per category, and split by `lsp_trivial`. Question vectors are cached in
+  `data/question-embeddings.json` (keyed by question id, with the model name); only ids
+  missing from the cache or embedded with a different model are fetched. `--refresh-embeddings`
+  re-fetches everything.
 - `eval --dedupe` is a retrieval-time change only (no re-index): it pulls the top
   `max(50, 10k)` chunks, collapses them to distinct files in first-seen order (each file ranks
   where its best chunk ranks), and scores the first k files. If fewer than k distinct files

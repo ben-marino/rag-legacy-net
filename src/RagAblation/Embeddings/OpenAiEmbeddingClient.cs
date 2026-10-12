@@ -7,7 +7,7 @@ namespace RagAblation.Embeddings;
 
 public sealed class OpenAiEmbeddingClient : IDisposable
 {
-    private const string Model = "text-embedding-3-small";
+    public const string Model = "text-embedding-3-small";
     private const int BatchSize = 100;
     private const int MaxAttempts = 5;
     private static readonly TimeSpan InitialBackoff = TimeSpan.FromSeconds(2);
