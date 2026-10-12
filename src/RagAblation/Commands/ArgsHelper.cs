@@ -8,4 +8,6 @@ internal static class ArgsHelper
             if (args[i] == name) return args[i + 1];
         return null;
     }
+
+    public static bool HasFlag(string[] args, string name) => args.Contains(name);
 }

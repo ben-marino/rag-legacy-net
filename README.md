@@ -49,8 +49,9 @@ first run if they don't exist.
 
 ```
 dotnet run --project src/RagAblation -- index --strategy fixed512|roslyn|both
-dotnet run --project src/RagAblation -- eval  --strategy fixed512|roslyn|both [--k 5]
-dotnet run --project src/RagAblation -- diff
+dotnet run --project src/RagAblation -- eval  --strategy fixed512|roslyn|both [--k 5] [--dedupe]
+dotnet run --project src/RagAblation -- diff [--dedupe]
+dotnet run --project src/RagAblation -- compare [--k 5]
 ```
 
 - `index` chunks, embeds, and inserts. Idempotent — truncates the strategy's table first.
@@ -59,9 +60,22 @@ dotnet run --project src/RagAblation -- diff
   distance, and counts a hit if any of the question's `correct_files` appears among the
   top-k chunks' file paths. Writes `data/results/{strategy}.json` and prints recall@k
   overall, per category, and split by `lsp_trivial`.
+- `eval --dedupe` is a retrieval-time change only (no re-index): it pulls the top
+  `max(50, 10k)` chunks, collapses them to distinct files in first-seen order (each file ranks
+  where its best chunk ranks), and scores the first k files. If fewer than k distinct files
+  exist in the top N it keeps the short list and prints a warning to stderr, without widening
+  N. Results go to `data/results/{strategy}.dedupe.json`; without the flag the original
+  `{strategy}.json` is written and the numbers are unchanged. Both modes also record the
+  retrieved chunk list (`TopKChunks`: file, rank, distance — all N of them under dedupe),
+  `DistinctFilesInTopN` and the `Dedupe` flag per question.
 - `diff` requires both eval runs to have completed. Prints a markdown table of questions
   where the two strategies disagree, per-category recall, and the two "only" question-id
-  lists.
+  lists. `diff --dedupe` reads the `.dedupe.json` pair.
+- `compare` reads all four results files and prints one strategy × dedupe recall table
+  (overall, per category, per `lsp_trivial`), the hit→miss / miss→hit question ids for each
+  strategy when dedupe is switched on, and the `DistinctFilesInTopN` distribution.
+- `scripts/disagreements.sh [--dedupe]` prints each disagreement with both strategies' top-5
+  files and the correct ones marked.
 
 `data/golden.json` is written by hand, not generated — `eval` and `diff` fail with a clear
 message if it's missing or malformed.

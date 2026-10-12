@@ -2,6 +2,7 @@ using Npgsql;
 using Pgvector;
 using Pgvector.Npgsql;
 using RagAblation.Chunking;
+using RagAblation.Eval;
 
 namespace RagAblation.Storage;
 
@@ -86,21 +87,31 @@ public sealed class PgStore : IAsyncDisposable
         return (int)(long)(await cmd.ExecuteScalarAsync(ct))!;
     }
 
-    public async Task<List<string>> TopKFilePathsAsync(
-        string strategy, float[] queryEmbedding, int k, CancellationToken ct = default)
+    /// <summary>
+    /// Top-k retrieval by cosine distance. With <paramref name="dedupe"/> off this is the original
+    /// behaviour: the file paths of the k nearest chunks. With it on, max(50, 10k) chunks are pulled and
+    /// collapsed to the first k distinct files (see <see cref="FileDedupe"/>). Both modes return the
+    /// retrieved chunk list alongside the files. <paramref name="warn"/> receives the fewer-than-k message.
+    /// </summary>
+    public async Task<TopKResult> TopKFilePathsAsync(
+        string strategy, float[] queryEmbedding, int k, bool dedupe = false,
+        Action<string>? warn = null, CancellationToken ct = default)
     {
         var table = TableName(strategy);
+        int n = FileDedupe.RetrievalDepth(k, dedupe);
+
         await using var conn = await _dataSource.OpenConnectionAsync(ct);
         await using var cmd = new NpgsqlCommand(
-            $"SELECT file_path FROM {table} ORDER BY embedding <=> $1 LIMIT $2", conn);
+            $"SELECT file_path, embedding <=> $1 AS distance FROM {table} ORDER BY embedding <=> $1 LIMIT $2", conn);
         cmd.Parameters.AddWithValue(new Vector(queryEmbedding));
-        cmd.Parameters.AddWithValue(k);
+        cmd.Parameters.AddWithValue(n);
 
-        var result = new List<string>();
+        var chunks = new List<ChunkHit>(n);
         await using var reader = await cmd.ExecuteReaderAsync(ct);
         while (await reader.ReadAsync(ct))
-            result.Add(reader.GetString(0));
-        return result;
+            chunks.Add(new ChunkHit(reader.GetString(0), chunks.Count + 1, reader.GetDouble(1)));
+
+        return FileDedupe.Collapse(chunks, k, dedupe, warn);
     }
 
     public async ValueTask DisposeAsync() => await _dataSource.DisposeAsync();

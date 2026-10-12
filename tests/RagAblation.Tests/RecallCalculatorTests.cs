@@ -45,10 +45,10 @@ public class RecallCalculatorTests
     {
         var results = new List<QuestionResult>
         {
-            new("q1", "cat", false, true, Array.Empty<string>()),
-            new("q2", "cat", false, false, Array.Empty<string>()),
-            new("q3", "cat", false, true, Array.Empty<string>()),
-            new("q4", "cat", false, false, Array.Empty<string>()),
+            new("q1", "cat", false, true, Array.Empty<string>(), Array.Empty<ChunkHit>(), 0, false),
+            new("q2", "cat", false, false, Array.Empty<string>(), Array.Empty<ChunkHit>(), 0, false),
+            new("q3", "cat", false, true, Array.Empty<string>(), Array.Empty<ChunkHit>(), 0, false),
+            new("q4", "cat", false, false, Array.Empty<string>(), Array.Empty<ChunkHit>(), 0, false),
         };
 
         Assert.Equal(0.5, RecallCalculator.Recall(results));

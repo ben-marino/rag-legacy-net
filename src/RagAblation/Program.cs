@@ -17,6 +17,7 @@ try
         "index" => await IndexCommand.RunAsync(rest),
         "eval" => await EvalCommand.RunAsync(rest),
         "diff" => await DiffCommand.RunAsync(rest),
+        "compare" => await CompareCommand.RunAsync(rest),
         _ => Unknown(command)
     };
 }
@@ -48,7 +49,8 @@ static void PrintUsage()
     Console.Error.WriteLine("""
         usage:
           dotnet run -- index --strategy fixed512|roslyn|both
-          dotnet run -- eval  --strategy fixed512|roslyn|both [--k 5]
-          dotnet run -- diff
+          dotnet run -- eval  --strategy fixed512|roslyn|both [--k 5] [--dedupe]
+          dotnet run -- diff [--dedupe]
+          dotnet run -- compare [--k 5]
         """);
 }

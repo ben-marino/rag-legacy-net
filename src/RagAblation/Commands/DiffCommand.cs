@@ -1,4 +1,3 @@
-using System.Text.Json;
 using RagAblation.Eval;
 using RagAblation.Golden;
 
@@ -8,10 +7,11 @@ public static class DiffCommand
 {
     public static async Task<int> RunAsync(string[] args)
     {
+        bool dedupe = ArgsHelper.HasFlag(args, "--dedupe");
         var golden = GoldenLoader.Load(Config.GoldenPath);
 
-        var fixedResults = await LoadResultsAsync("fixed512");
-        var roslynResults = await LoadResultsAsync("roslyn");
+        var fixedResults = await ResultsFile.LoadAsync("fixed512", dedupe);
+        var roslynResults = await ResultsFile.LoadAsync("roslyn", dedupe);
 
         var byIdFixed = fixedResults.ToDictionary(r => r.Id);
         var byIdRoslyn = roslynResults.ToDictionary(r => r.Id);
@@ -23,13 +23,15 @@ public static class DiffCommand
         {
             if (!byIdFixed.TryGetValue(q.Id, out var f) || !byIdRoslyn.TryGetValue(q.Id, out var r))
                 throw new InvalidOperationException(
-                    $"question '{q.Id}' is missing from one of the result files; re-run `eval --strategy both`.");
+                    $"question '{q.Id}' is missing from one of the result files; re-run `eval --strategy both{(dedupe ? " --dedupe" : "")}`.");
 
             if (f.Hit && r.Hit) bothHit++;
             else if (!f.Hit && !r.Hit) bothMiss++;
             else if (f.Hit) { fixedOnly++; disagreements.Add((q, f, r)); }
             else { roslynOnly++; disagreements.Add((q, f, r)); }
         }
+
+        if (dedupe) Console.WriteLine("(dedupe on: reading fixed512.dedupe.json / roslyn.dedupe.json)\n");
 
         Console.WriteLine("| id | category | fixed512 | roslyn |");
         Console.WriteLine("|---|---|---|---|");
@@ -54,16 +56,5 @@ public static class DiffCommand
         Console.WriteLine($"roslyn-only questions: {string.Join(", ", disagreements.Where(d => d.Roslyn.Hit).Select(d => d.Q.Id))}");
 
         return 0;
-    }
-
-    private static async Task<List<QuestionResult>> LoadResultsAsync(string strategy)
-    {
-        var path = Path.Combine(Config.ResultsDir, $"{strategy}.json");
-        if (!File.Exists(path))
-            throw new InvalidOperationException($"results file '{path}' not found; run `eval --strategy both` first.");
-
-        var json = await File.ReadAllTextAsync(path);
-        return JsonSerializer.Deserialize<List<QuestionResult>>(json)
-            ?? throw new InvalidOperationException($"results file '{path}' is malformed.");
     }
 }

@@ -2,14 +2,23 @@
 # Print every golden question where the fixed512 and roslyn strategies disagree
 # on Hit, with each strategy's top-5 file paths and the correct ones marked.
 #
-# Usage: scripts/disagreements.sh [golden.json] [fixed512.json] [roslyn.json]
+# Usage: scripts/disagreements.sh [--dedupe] [golden.json] [fixed512.json] [roslyn.json]
+#   --dedupe  read the fixed512.dedupe.json / roslyn.dedupe.json pair instead
 # Read-only: never modifies any input file.
 set -euo pipefail
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-golden="${1:-$root/data/golden.json}"
-fixed="${2:-$root/data/results/fixed512.json}"
-roslyn="${3:-$root/data/results/roslyn.json}"
+suffix=""
+positional=()
+for arg in "$@"; do
+  case "$arg" in
+    --dedupe) suffix=".dedupe" ;;
+    *) positional+=("$arg") ;;
+  esac
+done
+golden="${positional[0]:-$root/data/golden.json}"
+fixed="${positional[1]:-$root/data/results/fixed512$suffix.json}"
+roslyn="${positional[2]:-$root/data/results/roslyn$suffix.json}"
 
 for f in "$golden" "$fixed" "$roslyn"; do
   [[ -r "$f" ]] || { echo "error: cannot read $f" >&2; exit 1; }
