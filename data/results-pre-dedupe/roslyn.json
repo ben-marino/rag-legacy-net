@@ -240,8 +240,8 @@
     "Hit": false,
     "TopKFilePaths": [
       "src/Umbraco.Core/Services/MediaService.cs",
-      "src/Umbraco.Core/Auditing/AuditEventHandler.cs",
       "src/Umbraco.Core/Services/PublicAccessService.cs",
+      "src/Umbraco.Core/Auditing/AuditEventHandler.cs",
       "src/Umbraco.Core/Services/MemberService.cs",
       "src/Umbraco.Core/Services/ContentService.cs"
     ]

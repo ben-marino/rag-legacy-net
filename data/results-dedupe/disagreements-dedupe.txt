@@ -43,8 +43,8 @@ q19  If something is saved and then deleted inside the same transaction, why do 
     5.     src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs
   roslyn (Hit=false):
     1.     src/Umbraco.Core/Services/MediaService.cs
-    2.     src/Umbraco.Core/Auditing/AuditEventHandler.cs
-    3.     src/Umbraco.Core/Services/PublicAccessService.cs
+    2.     src/Umbraco.Core/Services/PublicAccessService.cs
+    3.     src/Umbraco.Core/Auditing/AuditEventHandler.cs
     4.     src/Umbraco.Core/Services/MemberService.cs
     5.     src/Umbraco.Core/Services/ContentService.cs
 
