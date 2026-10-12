@@ -101,8 +101,11 @@ public sealed class PgStore : IAsyncDisposable
         int n = FileDedupe.RetrievalDepth(k, dedupe);
 
         await using var conn = await _dataSource.OpenConnectionAsync(ct);
+        // Secondary sort on id so ties on distance are broken deterministically. Without it, chunks
+        // with identical distances (e.g. duplicate text) can come back in a different order between
+        // runs, which shifts their ranks and makes eval results non-reproducible.
         await using var cmd = new NpgsqlCommand(
-            $"SELECT file_path, embedding <=> $1 AS distance FROM {table} ORDER BY embedding <=> $1 LIMIT $2", conn);
+            $"SELECT file_path, embedding <=> $1 AS distance FROM {table} ORDER BY embedding <=> $1, id LIMIT $2", conn);
         cmd.Parameters.AddWithValue(new Vector(queryEmbedding));
         cmd.Parameters.AddWithValue(n);
 
