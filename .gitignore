@@ -3,3 +3,4 @@ bin/
 obj/
 data/results/
 .env
+.DS_Store

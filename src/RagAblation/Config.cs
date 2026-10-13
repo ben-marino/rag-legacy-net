@@ -5,7 +5,7 @@ public static class Config
     private static readonly string AppRoot = FindRepoRoot();
 
     public static string ConnectionString =>
-        Environment.GetEnvironmentVariable("RAG_PG") ?? "Host=localhost;Database=rag;Username=benmarino";
+        Environment.GetEnvironmentVariable("RAG_PG") ?? $"Host=localhost;Database=rag;Username={Environment.UserName}";
 
     public static string OpenAiApiKey =>
         Environment.GetEnvironmentVariable("OPENAI_API_KEY")
