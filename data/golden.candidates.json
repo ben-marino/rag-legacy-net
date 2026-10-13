@@ -1,0 +1,2090 @@
+[
+  {
+    "id": "c01",
+    "question": "Where is ContentService.SendToPublication implemented, and which events does it raise around saving the item?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/ContentService.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Core services",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/ContentService.cs",
+      "lines": "L1933-L1960",
+      "member": "ContentService.SendToPublication",
+      "snippet": "uow.Events.Dispatch(SentToPublish, this, sendToPublishEventArgs);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 2949,
+      "decl_line": 1939,
+      "doc_comment_lines": 6,
+      "body_lines": 19
+    },
+    "why": "Navigation into a 2,949-line service class; target sits at ~L1939, far from the file header.",
+    "confidence": "high",
+    "drafting_notes": "Also mentioned in IContentService.cs (interface), Editors/ContentController.cs and legacy Document.cs (callers); the implementation is only in ContentService.cs."
+  },
+  {
+    "id": "c02",
+    "question": "When someone restores an earlier draft from a webpage's history, is the webpage still live afterwards, and which parts of it actually revert?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/ContentService.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Core services",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/ContentService.cs",
+      "lines": "L1962-L2003",
+      "member": "ContentService.Rollback",
+      "snippet": "/// The way data is stored actually only allows us to rollback on properties"
+    },
+    "leakage_check": {
+      "nouns": [
+        "restore",
+        "earlier",
+        "draft",
+        "history",
+        "webpage",
+        "live",
+        "part",
+        "revert"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 2949,
+      "decl_line": 1974,
+      "doc_comment_lines": 12,
+      "body_lines": 27
+    },
+    "why": "Behaviour (reverted item is left unpublished; name/alias are not reverted) is stated in a 12-line doc comment deep in the largest service.",
+    "confidence": "high",
+    "drafting_notes": "Also has a 12-line doc comment (long-doc); counted as deep-in-large-class only. Answer: ChangePublishedState(PublishedState.Unpublished); only property data rolls back. Legacy dialogs/rollBack.aspx.cs is the old UI, not the rule."
+  },
+  {
+    "id": "c03",
+    "question": "When a front-end visitor account is created without saying what kind it should be, which kind is picked automatically, and what happens if the site has none set up?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/MemberService.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Core services",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/MemberService.cs",
+      "lines": "L49-L74",
+      "member": "MemberService.GetDefaultMemberType",
+      "snippet": "if (types.InvariantContains(\"Member\"))"
+    },
+    "leakage_check": {
+      "nouns": [
+        "front-end",
+        "visitor",
+        "account",
+        "kind",
+        "site"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1454,
+      "decl_line": 55,
+      "doc_comment_lines": 6,
+      "body_lines": 17
+    },
+    "why": "The doc comment says 'writer'/non-admin but the code prefers the alias 'Member' then the first type; tests whether retrieval finds the code, not the stale comment.",
+    "confidence": "medium",
+    "drafting_notes": "MembersMembershipProvider.DefaultMemberTypeAlias (src/Umbraco.Web/Security/Providers/MembersMembershipProvider.cs) reads the defaultMemberTypeAlias web.config setting first and only falls back to this method. A reviewer may want to add that file. Config involved: web.config membership provider section (not indexed)."
+  },
+  {
+    "id": "c04",
+    "question": "Where is the MediaService.GetMediaByPath service method, which returns an IMedia for an umbracoFile path such as /media/1024/koala.jpg?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/MediaService.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Core services",
+    "discriminator": "short-member",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/MediaService.cs",
+      "lines": "L725-L737",
+      "member": "MediaService.GetMediaByPath",
+      "snippet": "return repository.GetMediaByPath(mediaPath);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 1566,
+      "decl_line": 730,
+      "doc_comment_lines": 5,
+      "body_lines": 5
+    },
+    "why": "5-line body sandwiched between GetMediaInRecycleBin and HasChildren, ~L730 of a 1,566-line class.",
+    "confidence": "high",
+    "drafting_notes": "MediaRepository.GetMediaByPath (src/Umbraco.Core/Persistence/Repositories/MediaRepository.cs) holds the SQL; the question names the service method explicitly, so only MediaService.cs is correct. Also deep-in-large-class."
+  },
+  {
+    "id": "c05",
+    "question": "Where is MemberService.DeleteRole implemented, and what does its throwIfBeingUsed argument guard against?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/MemberService.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Core services",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/MemberService.cs",
+      "lines": "L1144-L1172",
+      "member": "MemberService.DeleteRole",
+      "snippet": "throw new InvalidOperationException(\"The role \" + roleName + \" is currently assigned to members\");"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 1454,
+      "decl_line": 1144,
+      "doc_comment_lines": 0,
+      "body_lines": 26
+    },
+    "why": "Plain navigation to a service member with a distinctive parameter.",
+    "confidence": "high",
+    "drafting_notes": "DeleteRole( also appears in IMembershipRoleService.cs and in the role providers (umbraco.providers/UsersRoleProvider.cs, umbraco.providers/members/UmbracoRoleProvider.cs, Umbraco.Web/Security/Providers/MembersRoleProvider.cs); the question names MemberService and the throwIfBeingUsed parameter, which only MemberService has."
+  },
+  {
+    "id": "c06",
+    "question": "Why does setting a front-end visitor's new secret from code throw when the site is wired to a third-party credential store, and how does the code tell the built-in store apart?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/MemberService.cs",
+      "src/Umbraco.Core/Security/MembershipProviderExtensions.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Core services",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/MemberService.cs",
+      "lines": "L90-L121",
+      "member": "MemberService.SavePassword",
+      "snippet": "if (provider.IsUmbracoMembershipProvider())"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Core/Security/MembershipProviderExtensions.cs",
+        "lines": "L153-L161",
+        "member": "MembershipProviderExtensions.IsUmbracoMembershipProvider",
+        "snippet": "return (membershipProvider is UmbracoMembershipProviderBase);"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "front-end",
+        "visitor",
+        "secret",
+        "code",
+        "site",
+        "third-party",
+        "credential",
+        "store",
+        "built-in"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1454,
+      "decl_line": 97,
+      "doc_comment_lines": 7,
+      "body_lines": 22
+    },
+    "why": "Behaviour split between the service (throws NotSupportedException) and the extension that recognises the built-in provider type.",
+    "confidence": "high",
+    "drafting_notes": "Which provider is active comes from web.config <membership> (not indexed)."
+  },
+  {
+    "id": "c07",
+    "question": "Where does ScopeUnitOfWork.Commit dequeue the registered operations and call PersistNewItem, PersistUpdatedItem and PersistDeletedItem on each repository?",
+    "correct_files": [
+      "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Persistence",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "lines": "L118-L161",
+      "member": "ScopeUnitOfWork.Commit(Action<UmbracoDatabase>)",
+      "snippet": "operation.Repository.PersistNewItem(operation.Entity);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 260,
+      "decl_line": 125,
+      "doc_comment_lines": 7,
+      "body_lines": 34
+    },
+    "why": "Core unit-of-work navigation target.",
+    "confidence": "high",
+    "drafting_notes": "The snippet also occurs in Flush() in the same file. 'void Commit(' also appears in IUnitOfWork.cs (interface) and Persistence/LockedRepository.cs (unrelated); the question names ScopeUnitOfWork."
+  },
+  {
+    "id": "c08",
+    "question": "When two siblings in the same folder end up with an identical title, how is the counter in brackets chosen, and why might you get 'About (3)' rather than 'About (2)'?",
+    "correct_files": [
+      "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Persistence",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Persistence/Repositories/SimilarNodeName.cs",
+      "lines": "L93-L116",
+      "member": "SimilarNodeName.GetUniqueName",
+      "snippet": "return uniqueing || string.IsNullOrWhiteSpace(nodeName) ? string.Concat(nodeName, \" (\", uniqueNumber.ToString(), \")\") : nodeName;"
+    },
+    "leakage_check": {
+      "nouns": [
+        "sibling",
+        "folder",
+        "title",
+        "counter",
+        "bracket"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 117,
+      "decl_line": 93,
+      "doc_comment_lines": 0,
+      "body_lines": 21
+    },
+    "why": "Small self-contained algorithm file; the vocabulary in the question (title, brackets) does not appear as identifiers.",
+    "confidence": "high",
+    "drafting_notes": "Callers: ContentRepository/MediaRepository EnsureUniqueNodeName (not required to answer). 'number' was checked: identifiers are uniqueNumber, NumPos, NumVal. See leakage result."
+  },
+  {
+    "id": "c09",
+    "question": "How does the hand-rolled ORM fetch only rows 41 to 60 of a listing, and why does the generated wording differ between older Microsoft engines, the embedded edition and everything else?",
+    "correct_files": [
+      "src/Umbraco.Core/Persistence/PetaPoco.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Persistence",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "lines": "L742-L789",
+      "member": "Database.BuildSqlDbSpecificPagingQuery",
+      "snippet": "sqlPage = string.Format(\"{0}\\nOFFSET @{1} ROWS FETCH NEXT @{2} ROWS ONLY\", sql, args.Length, args.Length + 1);"
+    },
+    "leakage_check": {
+      "nouns": [
+        "hand-rolled",
+        "orm",
+        "row",
+        "listing",
+        "wording",
+        "microsoft",
+        "engine",
+        "edition"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 2554,
+      "decl_line": 753,
+      "doc_comment_lines": 11,
+      "body_lines": 34
+    },
+    "why": "Target is ~L753 of a 2,554-line vendored ORM file.",
+    "confidence": "high",
+    "drafting_notes": "UmbracoDatabase.cs overrides this for SQL Server 2012+; that is the subject of a separate cross-cutting candidate."
+  },
+  {
+    "id": "c10",
+    "question": "Where does PetaPoco's GetSqlForTransactionLevel turn an IsolationLevel into a 'SET TRANSACTION ISOLATION LEVEL' statement?",
+    "correct_files": [
+      "src/Umbraco.Core/Persistence/PetaPoco.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Persistence",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "lines": "L385-L402",
+      "member": "Database.GetSqlForTransactionLevel",
+      "snippet": "return \"SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED\";"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 2554,
+      "decl_line": 385,
+      "doc_comment_lines": 0,
+      "body_lines": 15
+    },
+    "why": "Navigation to a private helper at ~L385 inside a 2,554-line file.",
+    "confidence": "high",
+    "drafting_notes": ""
+  },
+  {
+    "id": "c11",
+    "question": "On recent Microsoft engine releases, why do generated row-slice statements use OFFSET instead of a ROW_NUMBER() subquery, and where is the release checked?",
+    "correct_files": [
+      "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "src/Umbraco.Core/Persistence/UmbracoDatabase.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Persistence",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Core/Persistence/PetaPoco.cs",
+      "lines": "L742-L789",
+      "member": "Database.BuildSqlDbSpecificPagingQuery",
+      "snippet": "sqlPage = string.Format(\"{0}\\nOFFSET @{1} ROWS FETCH NEXT @{2} ROWS ONLY\", sql, args.Length, args.Length + 1);"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Core/Persistence/UmbracoDatabase.cs",
+        "lines": "L242-L276",
+        "member": "UmbracoDatabase.BuildSqlDbSpecificPagingQuery",
+        "snippet": "//it also uses the good paging syntax."
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "microsoft",
+        "engine",
+        "release",
+        "row-slice",
+        "statement",
+        "offset",
+        "row_number",
+        "subquery"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 2554,
+      "decl_line": 753,
+      "doc_comment_lines": 11,
+      "body_lines": 34
+    },
+    "why": "Override in UmbracoDatabase swaps DBType to SqlServerCE so the base class (deep in PetaPoco.cs) emits OFFSET/FETCH.",
+    "confidence": "high",
+    "drafting_notes": "Deep-in-large-class applies to the PetaPoco.cs half (L753 of 2,554). SqlServerSyntaxProvider.GetVersionName is called but is not needed to answer."
+  },
+  {
+    "id": "c12",
+    "question": "How do pending edits queued during one job get saved to SQL, or discarded, once the job finishes, and what happens when such jobs are nested inside each other?",
+    "correct_files": [
+      "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "src/Umbraco.Core/Scoping/Scope.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Persistence",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Persistence/UnitOfWork/ScopeUnitOfWork.cs",
+      "lines": "L245-L259",
+      "member": "ScopeUnitOfWork.DisposeResources",
+      "snippet": "if (_completeScope) _scope.Complete();"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Core/Scoping/Scope.cs",
+        "lines": "L392-L428",
+        "member": "Scope.ChildCompleted / Scope.DisposeLastScope",
+        "snippet": "_database.AbortTransaction();"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "pending",
+        "edit",
+        "job",
+        "sql",
+        "save",
+        "discard",
+        "finish",
+        "nested"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 260,
+      "decl_line": 251,
+      "doc_comment_lines": 6,
+      "body_lines": 6
+    },
+    "why": "Commit sets _completeScope; disposing completes the scope; the outermost Scope commits or aborts, and any uncompleted child forces an abort.",
+    "confidence": "medium",
+    "drafting_notes": "Wording is deliberately generic ('job') because 'call', 'commit', 'work', 'operation', 'transaction' and 'dispose' all appear as identifiers in these two files. ScopeProvider.cs manages the ambient stack but is not needed to answer."
+  },
+  {
+    "id": "c13",
+    "question": "Where is the PageCacheRefresherId GUID constant declared?",
+    "correct_files": [
+      "src/Umbraco.Web/Cache/DistributedCache.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Cache",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Cache/DistributedCache.cs",
+      "lines": "L29-L29",
+      "member": "DistributedCache.PageCacheRefresherId",
+      "snippet": "public const string PageCacheRefresherId = \"27AB3022-3DFA-47b6-9119-5945BC88FD66\";"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 266,
+      "decl_line": 29,
+      "doc_comment_lines": 0,
+      "body_lines": 0
+    },
+    "why": "Classic 'where is X defined' for a constant referenced from many files.",
+    "confidence": "high",
+    "drafting_notes": "PageCacheRefresher.cs and Suspendable.cs reference the constant but do not declare it."
+  },
+  {
+    "id": "c14",
+    "question": "During a bulk import, how can the live-site store be paused so it isn't rebuilt after every item, and then brought up to date with one full reload at the end?",
+    "correct_files": [
+      "src/Umbraco.Web/Suspendable.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Cache",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Suspendable.cs",
+      "lines": "L43-L54",
+      "member": "Suspendable.PageCacheRefresher.ResumeDocumentCache",
+      "snippet": "pageRefresher.RefreshAll();"
+    },
+    "leakage_check": {
+      "nouns": [
+        "bulk",
+        "import",
+        "live-site",
+        "store",
+        "pause",
+        "item",
+        "reload"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 116,
+      "decl_line": 43,
+      "doc_comment_lines": 0,
+      "body_lines": 9
+    },
+    "why": "Small internal static class; its name gives little away and it lives at the project root rather than under Cache/.",
+    "confidence": "medium",
+    "drafting_notes": "No indexed code calls SuspendDocumentCache (presumably used by add-ons such as Deploy/Courier). PageCacheRefresher.cs checks CanUpdateDocumentCache; a reviewer may accept it as a second file."
+  },
+  {
+    "id": "c15",
+    "question": "After someone edits something, how long is the delay before the site writes its snapshot of the live pages to disk, and what is the longest it will hold off during a continuous stream of edits?",
+    "correct_files": [
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlCacheFilePersister.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Cache",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/XmlCacheFilePersister.cs",
+      "lines": "L11-L38",
+      "member": "XmlCacheFilePersister (WaitMilliseconds / MaxWaitMilliseconds)",
+      "snippet": "private const int MaxWaitMilliseconds = 30000; // save the cache after some time (ie no more than 30s of changes)"
+    },
+    "leakage_check": {
+      "nouns": [
+        "edit",
+        "delay",
+        "site",
+        "snapshot",
+        "live",
+        "page",
+        "disk",
+        "stream",
+        "hold"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 180,
+      "decl_line": 37,
+      "doc_comment_lines": 0,
+      "body_lines": 0
+    },
+    "why": "Answer is two constants plus a 9-line class-level doc comment.",
+    "confidence": "high",
+    "drafting_notes": "Class doc comment is 9 lines but type-level, so not counted toward the long-doc quota. Legacy content.cs (umbraco.presentation) creates the persister; not needed to answer."
+  },
+  {
+    "id": "c16",
+    "question": "Why doesn't the front-end memoise every address-to-webpage match it resolves, particularly when a hostname has been assigned partway down the tree?",
+    "correct_files": [
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Cache",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs",
+      "lines": "L69-L84",
+      "member": "PublishedContentCache.AddToCacheIfDeepestRoute",
+      "snippet": "// that would be returned - the \"deepest\" route - and that is the route we want to cache, *not* the"
+    },
+    "leakage_check": {
+      "nouns": [
+        "front-end",
+        "address",
+        "webpage",
+        "match",
+        "hostname",
+        "tree"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 573,
+      "decl_line": 69,
+      "doc_comment_lines": 0,
+      "body_lines": 13
+    },
+    "why": "The reasoning lives in an inline comment, not a doc comment; tests retrieval of explanatory comments.",
+    "confidence": "high",
+    "drafting_notes": "Uses 'webpage' rather than 'page'/'node' because Page*/node* identifiers exist in the file."
+  },
+  {
+    "id": "c17",
+    "question": "After an editor pushes an edit live, how does it travel from the notification to every machine in a farm and into each machine's in-memory snapshot of the site?",
+    "correct_files": [
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "src/Umbraco.Web/Cache/DistributedCacheExtensions.cs",
+      "src/Umbraco.Web/Cache/PageCacheRefresher.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Cache",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "lines": "L260-L280",
+      "member": "CacheRefresherEventHandler.ContentService_Published",
+      "snippet": "UpdateSingleContentCache(content);"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/Cache/DistributedCacheExtensions.cs",
+        "lines": "L158-L161",
+        "member": "DistributedCacheExtensions.RefreshPageCache",
+        "snippet": "dc.Refresh(DistributedCache.PageCacheRefresherGuid, x => x.Id, content);"
+      },
+      {
+        "file": "src/Umbraco.Web/Cache/PageCacheRefresher.cs",
+        "lines": "L96-L107",
+        "member": "PageCacheRefresher.Refresh(IContent)",
+        "snippet": "content.Instance.UpdateDocumentCache(d);"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "editor",
+        "edit",
+        "live",
+        "notification",
+        "machine",
+        "farm",
+        "memory",
+        "snapshot",
+        "site"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 816,
+      "decl_line": 260,
+      "doc_comment_lines": 0,
+      "body_lines": 18
+    },
+    "why": "Canonical three-hop flow: event handler -> distributed cache extension -> refresher executed on each server.",
+    "confidence": "high",
+    "drafting_notes": "DistributedCache.cs and the server messengers (Core/Sync/*) are also on the path; legacy content.cs does the XML update. Load-balancing config in umbracoSettings.config (not indexed)."
+  },
+  {
+    "id": "c18",
+    "question": "Where does CacheRefresherEventHandler handle ContentService.Copied, and which refresher does it run for the copy?",
+    "correct_files": [
+      "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Cache",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Web/Cache/CacheRefresherEventHandler.cs",
+      "lines": "L347-L360",
+      "member": "CacheRefresherEventHandler.ContentService_Copied",
+      "snippet": "DistributedCache.Instance.RefreshUnpublishedPageCache(e.Copy);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 816,
+      "decl_line": 356,
+      "doc_comment_lines": 9,
+      "body_lines": 2
+    },
+    "why": "9-line doc comment whose remarks talk about permissions, while the body refreshes the unpublished page cache.",
+    "confidence": "high",
+    "drafting_notes": "Also a 2-line body, but neighbours are sibling content-event handlers, so not counted as short-member."
+  },
+  {
+    "id": "c19",
+    "question": "Resolved address-to-webpage lookups are memoised in both directions. Why are some stored entries trusted only one way, used for building outbound links but never for matching incoming hits?",
+    "correct_files": [
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs",
+      "src/Umbraco.Web/PublishedCache/XmlPublishedCache/RoutesCache.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Cache",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/PublishedContentCache.cs",
+      "lines": "L86-L109",
+      "member": "PublishedContentCache.GetRouteById",
+      "snippet": "// cache the route BUT do NOT trust it as it can be a colliding route"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/PublishedCache/XmlPublishedCache/RoutesCache.cs",
+        "lines": "L81-L92",
+        "member": "RoutesCache.Store",
+        "snippet": "_nodeIds.AddOrUpdate(route, i => nodeId, (i, s) => nodeId);"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "address",
+        "webpage",
+        "lookup",
+        "direction",
+        "entry",
+        "outbound",
+        "link",
+        "incoming",
+        "hit"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 573,
+      "decl_line": 86,
+      "doc_comment_lines": 0,
+      "body_lines": 21
+    },
+    "why": "The trust flag is decided in PublishedContentCache and enforced in RoutesCache.Store.",
+    "confidence": "high",
+    "drafting_notes": "Thematically close to the 'deepest route' semantic candidate (same file, different category)."
+  },
+  {
+    "id": "c20",
+    "question": "ContentService.Published is only a proxy. Which class actually declares the Published event and dispatches it in PublishingFinalized?",
+    "correct_files": [
+      "src/Umbraco.Core/Publishing/PublishingStrategy.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Events",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Publishing/PublishingStrategy.cs",
+      "lines": "L527-L531",
+      "member": "PublishingStrategy.PublishingFinalized",
+      "snippet": "uow.Events.Dispatch(Published, this, new PublishEventArgs<IContent>(content, false, false, evtMsgs), \"Published\");"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 551,
+      "decl_line": 527,
+      "doc_comment_lines": 0,
+      "body_lines": 2
+    },
+    "why": "Trap for retrieval: the obvious file (ContentService.cs) only has add/remove accessors forwarding to PublishingStrategy.",
+    "confidence": "high",
+    "drafting_notes": "ContentService.cs (~L2805) has the proxy event and calls PublishingFinalized, and is deliberately not a correct file. BasePublishingStrategy.cs/IPublishingStrategy.cs declare PublishingFinalized signatures but not the Published event dispatch."
+  },
+  {
+    "id": "c21",
+    "question": "Which event-args class is decorated with [SupersedeEvent] for SaveEventArgs, PublishEventArgs, MoveEventArgs and CopyEventArgs?",
+    "correct_files": [
+      "src/Umbraco.Core/Events/DeleteEventArgs.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Events",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Events/DeleteEventArgs.cs",
+      "lines": "L7-L143",
+      "member": "DeleteEventArgs<TEntity> (class attributes)",
+      "snippet": "[SupersedeEvent(typeof(SaveEventArgs<>))]"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 201,
+      "decl_line": 11,
+      "doc_comment_lines": 0,
+      "body_lines": 130
+    },
+    "why": "Attribute usage lives on the class declaration, which only the type-level chunk sees.",
+    "confidence": "high",
+    "drafting_notes": "SupersedeEventAttribute.cs defines the attribute; it is not where it is applied."
+  },
+  {
+    "id": "c22",
+    "question": "Where is the IsRaisedEventCancelled extension method for TypedEventHandler defined?",
+    "correct_files": [
+      "src/Umbraco.Core/Events/EventExtensions.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Events",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Core/Events/EventExtensions.cs",
+      "lines": "L18-L34",
+      "member": "EventExtensions.IsRaisedEventCancelled",
+      "snippet": "public static bool IsRaisedEventCancelled<TSender, TArgs>(this TypedEventHandler<TSender, TArgs> eventHandler, TArgs args, TSender sender)"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 50,
+      "decl_line": 28,
+      "doc_comment_lines": 10,
+      "body_lines": 3
+    },
+    "why": "10-line doc comment on a 3-line body.",
+    "confidence": "high",
+    "drafting_notes": ""
+  },
+  {
+    "id": "c23",
+    "question": "When a 'before' or 'after' notification is queued without a label, how does the code work out which one it was (for example 'Saving' versus 'Saved'), and when can it not tell?",
+    "correct_files": [
+      "src/Umbraco.Core/Events/EventNameExtractor.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Events",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Core/Events/EventNameExtractor.cs",
+      "lines": "L26-L91",
+      "member": "EventNameExtractor.FindEvent",
+      "snippet": "/// null if not found or an ambiguous match"
+    },
+    "leakage_check": {
+      "nouns": [
+        "before",
+        "after",
+        "notification",
+        "queue",
+        "label",
+        "code",
+        "saving",
+        "saved"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 158,
+      "decl_line": 37,
+      "doc_comment_lines": 11,
+      "body_lines": 52
+    },
+    "why": "11-line member doc plus a 14-line class doc explain a reflection trick that is hard to describe with the identifiers.",
+    "confidence": "high",
+    "drafting_notes": "EventDefinitionBase.cs calls FindEvent; not needed to answer."
+  },
+  {
+    "id": "c24",
+    "question": "When a webpage is discarded but not yet purged, how does the platform remember where it originally lived so it can be put back in the right place later?",
+    "correct_files": [
+      "src/Umbraco.Core/Strategies/RelateOnTrashHandler.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Events",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Strategies/RelateOnTrashHandler.cs",
+      "lines": "L50-L94",
+      "member": "RelateOnTrashHandler.ContentService_Trashed",
+      "snippet": "// Add a relation for the item being deleted, so that we can know the original parent for if we need to restore later"
+    },
+    "leakage_check": {
+      "nouns": [
+        "webpage",
+        "discard",
+        "purge",
+        "platform",
+        "place"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 139,
+      "decl_line": 50,
+      "doc_comment_lines": 0,
+      "body_lines": 42
+    },
+    "why": "Behaviour implemented as an event subscriber in Core/Strategies, not in the service people would look at first.",
+    "confidence": "high",
+    "drafting_notes": "Subsystem = events because it is an application event handler subscribed to ContentService.Trashed/Moved."
+  },
+  {
+    "id": "c25",
+    "question": "When duplicating a webpage with the option ticked to keep it linked to its source, where does that link get recorded, and how does the tick-box choice travel there?",
+    "correct_files": [
+      "src/Umbraco.Core/Strategies/RelateOnCopyHandler.cs",
+      "src/Umbraco.Core/Events/CopyEventArgs.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Events",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Strategies/RelateOnCopyHandler.cs",
+      "lines": "L16-L42",
+      "member": "RelateOnCopyHandler.ContentServiceCopied",
+      "snippet": "var relation = new Relation(e.Original.Id, e.Copy.Id, relationType);"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Core/Events/CopyEventArgs.cs",
+        "lines": "L48-L48",
+        "member": "CopyEventArgs.RelateToOriginal",
+        "snippet": "public bool RelateToOriginal { get; set; }"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "duplicate",
+        "webpage",
+        "option",
+        "tick",
+        "link",
+        "source",
+        "record",
+        "choice"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 44,
+      "decl_line": 16,
+      "doc_comment_lines": 0,
+      "body_lines": 24
+    },
+    "why": "The flag rides on the event args from ContentService.Copy to a separate subscriber.",
+    "confidence": "medium",
+    "drafting_notes": "ContentService.Copy (Services/ContentService.cs ~L1853) constructs the args; it is excluded because ContentService.cs is already the correct file of another cross-cutting candidate. 'link' checked against both files."
+  },
+  {
+    "id": "c26",
+    "question": "When an item holding an attachment is removed permanently, at what point are its bytes wiped from disk, and what happens to them if the surrounding work never finishes?",
+    "correct_files": [
+      "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+      "src/Umbraco.Core/Events/ScopeEventDispatcher.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Events",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Events/ScopeEventDispatcher.cs",
+      "lines": "L15-L32",
+      "member": "ScopeEventDispatcher.ScopeExitCompleted",
+      "snippet": "MediaFileSystem.DeleteMediaFiles(delete.MediaFilesToDelete);"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/PropertyEditors/FileUploadPropertyEditor.cs",
+        "lines": "L171-L198",
+        "member": "FileUploadPropertyEditor.OnApplicationStarted (Deleted handlers)",
+        "snippet": "MediaService.Deleted += (sender, args) => args.MediaFilesToDelete.AddRange("
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "item",
+        "attachment",
+        "byte",
+        "disk",
+        "work"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 43,
+      "decl_line": 15,
+      "doc_comment_lines": 0,
+      "body_lines": 15
+    },
+    "why": "Property editor adds file paths to the Deleted args; the scope dispatcher deletes them only after the scope completes.",
+    "confidence": "medium",
+    "drafting_notes": "ImageCropperPropertyEditor.cs registers the same handlers and is an equally valid first file; a reviewer may add it."
+  },
+  {
+    "id": "c27",
+    "question": "If something is persisted and then erased inside the same transaction, why don't subscribers to the 'persisted' notification ever hear about it?",
+    "correct_files": [
+      "src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs",
+      "src/Umbraco.Core/Events/DeleteEventArgs.cs",
+      "src/Umbraco.Core/Events/SupersedeEventAttribute.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Events",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Core/Events/ScopeEventDispatcherBase.cs",
+      "lines": "L129-L243",
+      "member": "ScopeEventDispatcherBase.FilterSupersededAndUpdateToLatestEntity",
+      "snippet": "// is Deleted after being Saved, we want to filter out the Saved event"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Core/Events/DeleteEventArgs.cs",
+        "lines": "L7-L143",
+        "member": "DeleteEventArgs<TEntity> (class attributes)",
+        "snippet": "[SupersedeEvent(typeof(SaveEventArgs<>))]"
+      },
+      {
+        "file": "src/Umbraco.Core/Events/SupersedeEventAttribute.cs",
+        "lines": "L5-L19",
+        "member": "SupersedeEventAttribute",
+        "snippet": "internal class SupersedeEventAttribute : Attribute"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "persist",
+        "erase",
+        "transaction",
+        "subscriber",
+        "notification"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 343,
+      "decl_line": 129,
+      "doc_comment_lines": 0,
+      "body_lines": 112
+    },
+    "why": "Mechanism spans filter logic, the attribute definition and where the attribute is applied.",
+    "confidence": "high",
+    "drafting_notes": "'transaction' checked clean against all three files."
+  },
+  {
+    "id": "c28",
+    "question": "Which IContentFinder handles URLs of the form /foo/bar/{templateAlias}, assigning the template when the node allows it?",
+    "correct_files": [
+      "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Web routing",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Routing/ContentFinderByNiceUrlAndTemplate.cs",
+      "lines": "L17-L77",
+      "member": "ContentFinderByNiceUrlAndTemplate.TryFindContent",
+      "snippet": "var templateAlias = path.Substring(pos + 1);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 79,
+      "decl_line": 23,
+      "doc_comment_lines": 6,
+      "body_lines": 52
+    },
+    "why": "Several ContentFinderBy* files look alike; tests picking the right one.",
+    "confidence": "high",
+    "drafting_notes": ""
+  },
+  {
+    "id": "c29",
+    "question": "What stops a chain of forwards, sign-in bounces and dead-end fallbacks from cycling endlessly while a visitor is being served?",
+    "correct_files": [
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Web routing",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "lines": "L449-L508",
+      "member": "PublishedContentRequestEngine.HandlePublishedContent",
+      "snippet": "const int maxLoop = 8;"
+    },
+    "leakage_check": {
+      "nouns": [
+        "chain",
+        "forward",
+        "sign-in",
+        "bounce",
+        "dead-end",
+        "fallback",
+        "visitor"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 812,
+      "decl_line": 456,
+      "doc_comment_lines": 7,
+      "body_lines": 50
+    },
+    "why": "Answer is one constant and two loop counters inside an 812-line engine.",
+    "confidence": "high",
+    "drafting_notes": "'loop', 'internal', 'access', 'missing' and 'found' were removed from the wording because they match identifiers (maxLoop, FollowInternalRedirects, PublicAccessService, UpdateRequestOnMissingTemplate, found)."
+  },
+  {
+    "id": "c30",
+    "question": "Where does PublishedContentRequestEngine.FindTemplate read the altTemplate value and check IsAllowedTemplate?",
+    "correct_files": [
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Web routing",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "lines": "L664-L757",
+      "member": "PublishedContentRequestEngine.FindTemplate",
+      "snippet": "if (_pcr.PublishedContent.IsAllowedTemplate(altTemplate))"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 812,
+      "decl_line": 667,
+      "doc_comment_lines": 3,
+      "body_lines": 88
+    },
+    "why": "Navigation into the request engine.",
+    "confidence": "high",
+    "drafting_notes": "ContentFinderByNiceUrlAndTemplate also checks IsAllowedTemplate, but the question names FindTemplate."
+  },
+  {
+    "id": "c31",
+    "question": "When an editor renames or relocates a live webpage, how do visitors who hit the previous address end up at the new one?",
+    "correct_files": [
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "src/Umbraco.Web/Routing/ContentFinderByRedirectUrl.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Web routing",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "lines": "L286-L296",
+      "member": "RedirectTrackingEventHandler.CreateRedirect",
+      "snippet": "redirectUrlService.Register(oldRoute, contentKey);"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/Routing/ContentFinderByRedirectUrl.cs",
+        "lines": "L17-L63",
+        "member": "ContentFinderByRedirectUrl.TryFindContent",
+        "snippet": "contentRequest.SetRedirectPermanent(url);"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "editor",
+        "rename",
+        "relocate",
+        "live",
+        "webpage",
+        "visitor",
+        "address"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 330,
+      "decl_line": 286,
+      "doc_comment_lines": 0,
+      "body_lines": 8
+    },
+    "why": "Recording (on publish/move) and serving (content finder) are in different files.",
+    "confidence": "high",
+    "drafting_notes": "RedirectUrlService (Core/Services) stores the rows; not needed to answer."
+  },
+  {
+    "id": "c32",
+    "question": "Why might the built-in automatic 301 forwarding for renamed webpages silently switch itself off on some sites?",
+    "correct_files": [
+      "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Web routing",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Routing/RedirectTrackingEventHandler.cs",
+      "lines": "L33-L61",
+      "member": "RedirectTrackingEventHandler.ApplicationStarting",
+      "snippet": "\"InfoCaster.Umbraco.UrlTracker\","
+    },
+    "leakage_check": {
+      "nouns": [
+        "forwarding",
+        "rename",
+        "webpage",
+        "site",
+        "301"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 330,
+      "decl_line": 34,
+      "doc_comment_lines": 1,
+      "body_lines": 25
+    },
+    "why": "Two reasons, config flag or a known third-party redirect add-on assembly being loaded, both in one method.",
+    "confidence": "high",
+    "drafting_notes": "Config involved: umbracoSettings.config webRouting/@disableRedirectUrlTracking (not indexed)."
+  },
+  {
+    "id": "c33",
+    "question": "When a signed-in visitor whose account is frozen or was never activated requests a restricted webpage, what do they get instead, and where is it decided which audiences may see it?",
+    "correct_files": [
+      "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "src/Umbraco.Core/Services/PublicAccessServiceExtensions.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Web routing",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Routing/PublishedContentRequestEngine.cs",
+      "lines": "L586-L662",
+      "member": "PublishedContentRequestEngine.EnsurePublishedContentAccess",
+      "snippet": "var errorPageId = publicAccessAttempt.Result.NoAccessNodeId;"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Core/Services/PublicAccessServiceExtensions.cs",
+        "lines": "L44-L54",
+        "member": "PublicAccessServiceExtensions.HasAccess",
+        "snippet": "public static bool HasAccess(this IPublicAccessService publicAccessService, int documentId, IContentService contentService, IEnumerable<string> currentMemberRoles)"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "signed-in",
+        "visitor",
+        "account",
+        "frozen",
+        "activate",
+        "restricted",
+        "webpage",
+        "audience"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 812,
+      "decl_line": 590,
+      "doc_comment_lines": 4,
+      "body_lines": 70
+    },
+    "why": "Engine handles login/no-access/unapproved/locked-out redirection; role matching is in the service extensions.",
+    "confidence": "medium",
+    "drafting_notes": "PublicAccessService.cs (IsProtected) is also on the path; a reviewer may add it."
+  },
+  {
+    "id": "c34",
+    "question": "What does a visitor get if they hit the site while it is still warming up after a restart, and how long can their hit be held first?",
+    "correct_files": [
+      "src/Umbraco.Web/UmbracoModule.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/UmbracoModule.cs",
+      "lines": "L245-L273",
+      "member": "UmbracoModule.EnsureIsReady",
+      "snippet": "ready = ApplicationContext.Current.WaitForReady(10 * 1000);"
+    },
+    "leakage_check": {
+      "nouns": [
+        "visitor",
+        "site",
+        "hit",
+        "restart"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 602,
+      "decl_line": 245,
+      "doc_comment_lines": 0,
+      "body_lines": 26
+    },
+    "why": "503 + booting splash + 10s wait all in one static method of the main module.",
+    "confidence": "high",
+    "drafting_notes": "Config/view involved: ~/config/splashes/booting.aspx and umbracoSettings.config EnableSplashWhileLoading (not indexed). Legacy umbraco.presentation/requestModule.cs also rewrites to booting.aspx on a separate legacy path; not included because it has no 10s hold and no 503."
+  },
+  {
+    "id": "c35",
+    "question": "Where does UmbracoModule dispose HttpContext.Items entries that implement IDisposeOnRequestEnd when a request ends?",
+    "correct_files": [
+      "src/Umbraco.Web/UmbracoModule.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/UmbracoModule.cs",
+      "lines": "L433-L472",
+      "member": "UmbracoModule.DisposeHttpContextItems",
+      "snippet": "if (i.Value is IDisposeOnRequestEnd || i.Key is IDisposeOnRequestEnd)"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 602,
+      "decl_line": 437,
+      "doc_comment_lines": 4,
+      "body_lines": 33
+    },
+    "why": "Navigation within the main HttpModule.",
+    "confidence": "high",
+    "drafting_notes": ""
+  },
+  {
+    "id": "c36",
+    "question": "Where is the viewstateMoverModule IHttpModule that wraps .aspx responses in a ViewstateFilter?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/viewstateMoverModule.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/viewstateMoverModule.cs",
+      "lines": "L38-L45",
+      "member": "viewstateMoverModule.context_BeginRequest",
+      "snippet": "app.Response.Filter = new ViewstateFilter(app.Response.Filter);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 153,
+      "decl_line": 38,
+      "doc_comment_lines": 0,
+      "body_lines": 5
+    },
+    "why": "Lower-case legacy class name; tests exact-identifier recall.",
+    "confidence": "high",
+    "drafting_notes": "Enabled via umbracoSettings ViewStateMoverModule/@enable (not indexed)."
+  },
+  {
+    "id": "c37",
+    "question": "Where does the legacy requestModule schedule its recurring log scrubbing through an expiring HttpRuntime.Cache entry (AddTask / CacheItemRemoved)?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/requestModule.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "short-member",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/requestModule.cs",
+      "lines": "L449-L455",
+      "member": "requestModule.AddTask",
+      "snippet": "CacheItemPriority.NotRemovable, OnCacheRemove);"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 475,
+      "decl_line": 449,
+      "doc_comment_lines": 0,
+      "body_lines": 4
+    },
+    "why": "4-line body between GetLogScrubbingMaximumAge (config read) and CacheItemRemoved (callback).",
+    "confidence": "medium",
+    "drafting_notes": "Neighbours are in the same #region; they are different concerns (config lookup vs callback) but not wholly unrelated. requestModule is legacy; whether it is still registered depends on web.config (not indexed)."
+  },
+  {
+    "id": "c38",
+    "question": "Where is UmbracoContext.EnsureContext defined, and when does its replaceContext flag swap out an existing UmbracoContext.Current?",
+    "correct_files": [
+      "src/Umbraco.Web/UmbracoContext.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Web/UmbracoContext.cs",
+      "lines": "L91-L142",
+      "member": "UmbracoContext.EnsureContext (full overload)",
+      "snippet": "UmbracoContext.Current._replacing = true;"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 499,
+      "decl_line": 114,
+      "doc_comment_lines": 23,
+      "body_lines": 19
+    },
+    "why": "23-line doc comment explaining why the context is replaced after app startup.",
+    "confidence": "high",
+    "drafting_notes": "Several EnsureContext overloads in the same file; the evidence range is the one with the long doc."
+  },
+  {
+    "id": "c39",
+    "question": "How does the platform decide whether an incoming address is meant for the admin UI rather than the visitor-facing site, e.g. /umbraco/Surface/... versus /umbraco/BackOffice/...?",
+    "correct_files": [
+      "src/Umbraco.Core/UriExtensions.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Core/UriExtensions.cs",
+      "lines": "L15-L102",
+      "member": "UriExtensions.IsBackOfficeRequest",
+      "snippet": "///         /Umbraco/Surface        = front-end"
+    },
+    "leakage_check": {
+      "nouns": [
+        "platform",
+        "incoming",
+        "address",
+        "admin",
+        "ui",
+        "visitor-facing",
+        "site"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 323,
+      "decl_line": 41,
+      "doc_comment_lines": 26,
+      "body_lines": 59
+    },
+    "why": "26-line doc comment lists the rules; lives in Umbraco.Core, not the web project.",
+    "confidence": "high",
+    "drafting_notes": "The example paths are string literals/doc text, not identifiers. The path segments come from GlobalSettings (umbracoPath appSetting, not indexed)."
+  },
+  {
+    "id": "c40",
+    "question": "For an ordinary visitor-facing hit, at which ASP.NET pipeline stage is it intercepted, and where are the matching webpage and its layout worked out before control is handed off?",
+    "correct_files": [
+      "src/Umbraco.Web/UmbracoModule.cs",
+      "src/Umbraco.Web/Routing/PublishedContentRequest.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "HttpModules and request pipeline",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/UmbracoModule.cs",
+      "lines": "L72-L147",
+      "member": "UmbracoModule.ProcessRequest",
+      "snippet": "pcr.Prepare();"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/Routing/PublishedContentRequest.cs",
+        "lines": "L88-L94",
+        "member": "PublishedContentRequest.Prepare",
+        "snippet": "_engine.PrepareRequest();"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "visitor-facing",
+        "hit",
+        "asp.net",
+        "pipeline",
+        "stage",
+        "webpage",
+        "layout",
+        "control"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 602,
+      "decl_line": 84,
+      "doc_comment_lines": 12,
+      "body_lines": 61
+    },
+    "why": "PostResolveRequestCache -> ProcessRequest -> PublishedContentRequest.Prepare -> engine.",
+    "confidence": "medium",
+    "drafting_notes": "PublishedContentRequestEngine.cs does the actual finding but is the correct file of another cross-cutting candidate, so it is left out here; reviewer may prefer to add it."
+  },
+  {
+    "id": "c41",
+    "question": "In the admin screens, what happens when someone discards a webpage that was previously discarded?",
+    "correct_files": [
+      "src/Umbraco.Web/Editors/ContentController.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Web/Editors/ContentController.cs",
+      "lines": "L800-L844",
+      "member": "ContentController.DeleteById",
+      "snippet": "/// Moves an item to the recycle bin, if it is already there then it will permanently delete it"
+    },
+    "leakage_check": {
+      "nouns": [
+        "admin",
+        "screen",
+        "discard",
+        "webpage"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1230,
+      "decl_line": 812,
+      "doc_comment_lines": 9,
+      "body_lines": 30
+    },
+    "why": "9-line doc comment states the rule.",
+    "confidence": "high",
+    "drafting_notes": "MediaController.DeleteById has the same behaviour for media; question says 'page'."
+  },
+  {
+    "id": "c42",
+    "question": "Why is someone told a webpage cannot go live because the one above it isn't live, and where is that rule enforced versus where the wording is chosen?",
+    "correct_files": [
+      "src/Umbraco.Core/Services/ContentService.cs",
+      "src/Umbraco.Web/Editors/ContentController.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Core/Services/ContentService.cs",
+      "lines": "L2717-L2748",
+      "member": "ContentService.CheckAndLogIsPublishable",
+      "snippet": "return PublishStatusType.FailedPathNotPublished;"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/Editors/ContentController.cs",
+        "lines": "L1056-L1109",
+        "member": "ContentController.ShowMessageForPublishStatus",
+        "snippet": "Services.TextService.Localize(\"publish/contentPublishedFailedByParent\","
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "webpage",
+        "live",
+        "rule",
+        "wording"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 2949,
+      "decl_line": 2717,
+      "doc_comment_lines": 0,
+      "body_lines": 29
+    },
+    "why": "Rule deep in ContentService (~L2717 of 2,949); message mapping in the controller.",
+    "confidence": "high",
+    "drafting_notes": "Actual text comes from Umbraco/config/lang/*.xml (not indexed). 'page' dropped from nouns; see leakage_check."
+  },
+  {
+    "id": "c43",
+    "question": "When someone drags a batch onto the admin library with the kind set to automatic, how is each one classed as a picture or a generic attachment, and what happens to ones whose suffix isn't allowed?",
+    "correct_files": [
+      "src/Umbraco.Web/Editors/MediaController.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Editors/MediaController.cs",
+      "lines": "L689-L856",
+      "member": "MediaController.PostAddFile",
+      "snippet": "if (UmbracoConfig.For.UmbracoSettings().Content.ImageFileTypes.Contains(ext))"
+    },
+    "leakage_check": {
+      "nouns": [
+        "batch",
+        "admin",
+        "library",
+        "kind",
+        "automatic",
+        "picture",
+        "attachment",
+        "suffix"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1018,
+      "decl_line": 697,
+      "doc_comment_lines": 7,
+      "body_lines": 157
+    },
+    "why": "Decision buried in a ~160-line action.",
+    "confidence": "high",
+    "drafting_notes": "Allowed and image extension lists come from umbracoSettings.config (not indexed). The upload-safety validator (FileStreamSecurityValidator) is called here but is not needed to answer."
+  },
+  {
+    "id": "c44",
+    "question": "Where does MediaController.GetParentIdAsInt resolve a parent given as GUID, UDI or int and check the user's access to it?",
+    "correct_files": [
+      "src/Umbraco.Web/Editors/MediaController.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/Umbraco.Web/Editors/MediaController.cs",
+      "lines": "L858-L919",
+      "member": "MediaController.GetParentIdAsInt",
+      "snippet": "/// If true, this will check if the current user has access to the resolved integer parent id"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 1018,
+      "decl_line": 867,
+      "doc_comment_lines": 9,
+      "body_lines": 50
+    },
+    "why": "9-line doc comment on a private helper.",
+    "confidence": "high",
+    "drafting_notes": ""
+  },
+  {
+    "id": "c45",
+    "question": "When a writer creates a brand-new webpage and pushes it live in one click, which rights are verified, and against the new webpage or the one above it?",
+    "correct_files": [
+      "src/Umbraco.Web/Editors/ContentPostValidateAttribute.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Editors/ContentPostValidateAttribute.cs",
+      "lines": "L68-L160",
+      "member": "ContentPostValidateAttribute.OnActionExecuting",
+      "snippet": "//Publish new requires both ActionNew AND ActionPublish"
+    },
+    "leakage_check": {
+      "nouns": [
+        "writer",
+        "brand-new",
+        "webpage",
+        "live",
+        "right"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 161,
+      "decl_line": 68,
+      "doc_comment_lines": 0,
+      "body_lines": 90
+    },
+    "why": "Rules live in an action filter attribute, not the controller action.",
+    "confidence": "high",
+    "drafting_notes": "ContentController.CheckPermissions does the lookup but is not needed to answer which rights and which node (parent)."
+  },
+  {
+    "id": "c46",
+    "question": "Where is ContentController.PostSort, and which permission letter does its EnsureUserPermissionForContent attribute require?",
+    "correct_files": [
+      "src/Umbraco.Web/Editors/ContentController.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Editors/ContentController.cs",
+      "lines": "L863-L899",
+      "member": "ContentController.PostSort",
+      "snippet": "[EnsureUserPermissionForContent(\"sorted.ParentId\", 'S')]"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 1230,
+      "decl_line": 869,
+      "doc_comment_lines": 5,
+      "body_lines": 28
+    },
+    "why": "Navigation to a controller action whose key fact is in an attribute.",
+    "confidence": "high",
+    "drafting_notes": "MediaController.PostSort exists too; question names ContentController."
+  },
+  {
+    "id": "c47",
+    "question": "Why can't an administrator wipe and regenerate their own credential from the people screen, and what extra right do they need to do it for someone else?",
+    "correct_files": [
+      "src/Umbraco.Web/Editors/PasswordChanger.cs",
+      "src/Umbraco.Web/Editors/UsersController.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Backoffice API controllers",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/Editors/PasswordChanger.cs",
+      "lines": "L35-L147",
+      "member": "PasswordChanger.ChangePasswordWithIdentityAsync",
+      "snippet": "return Attempt.Fail(new PasswordChangedModel { ChangeError = new ValidationResult(\"Password reset is not allowed\", new[] { \"resetPassword\" }) });"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/Editors/UsersController.cs",
+        "lines": "L586-L586",
+        "member": "UsersController.PostSaveUser (ChangePassword branch)",
+        "snippet": "var passwordChangeResult = await passwordChanger.ChangePasswordWithIdentityAsync(Security.CurrentUser, found, userSave.ChangePassword, UserManager);"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "administrator",
+        "credential",
+        "people",
+        "screen",
+        "right"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 322,
+      "decl_line": 43,
+      "doc_comment_lines": 8,
+      "body_lines": 98
+    },
+    "why": "Controller passes current vs saving user; rule (self-reset forbidden, Users section access required) is in PasswordChanger.",
+    "confidence": "medium",
+    "drafting_notes": "CurrentUserController.PostChangePassword also calls PasswordChanger (self-service path); a reviewer may add it."
+  },
+  {
+    "id": "c48",
+    "question": "If a developer modifies a server-side widget on disk, how does the old WebForms renderer know to stop serving its stale saved markup?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/macro.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Legacy layer",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/macro.cs",
+      "lines": "L723-L753",
+      "member": "macro.MacroNeedsToBeClearedFromCache",
+      "snippet": "if (macroFile.LastWriteTime.CompareTo(dateMacroAdded) == 1)"
+    },
+    "leakage_check": {
+      "nouns": [
+        "developer",
+        "server-side",
+        "widget",
+        "disk",
+        "webforms",
+        "renderer",
+        "markup"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1927,
+      "decl_line": 734,
+      "doc_comment_lines": 11,
+      "body_lines": 17
+    },
+    "why": "~L734 of a 1,927-line legacy class; also has an 11-line doc comment.",
+    "confidence": "high",
+    "drafting_notes": "Also long-doc (11 lines); counted as deep-in-large-class. Umbraco.Web/Macros/MacroRenderer.cs may have similar logic for the MVC path; checked: that is a different renderer, question says WebForms."
+  },
+  {
+    "id": "c49",
+    "question": "Where does the legacy macro class produce the 'No macro content available for WYSIWYG editing' placeholder (ShowNoMacroContent)?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/macro.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Legacy layer",
+    "discriminator": "short-member",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/macro.cs",
+      "lines": "L1785-L1789",
+      "member": "macro.ShowNoMacroContent",
+      "snippet": "\"</strong><br />No macro content available for WYSIWYG editing</span>\";"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 1927,
+      "decl_line": 1785,
+      "doc_comment_lines": 0,
+      "body_lines": 2
+    },
+    "why": "2-line body between MacroContentByHttp and ValidateRemoteCertificate (TLS callback), ~L1785 of 1,927.",
+    "confidence": "high",
+    "drafting_notes": "Also deep-in-large-class."
+  },
+  {
+    "id": "c50",
+    "question": "From legacy transforms, how can I pull a remote feed and keep a copy for a fixed period that isn't flushed when things go live?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/library.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Legacy layer",
+    "discriminator": "deep-in-large-class",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/library.cs",
+      "lines": "L1533-L1556",
+      "member": "library.GetXmlDocumentByUrl(string, int)",
+      "snippet": "HttpContext.Current.Cache.Insert(\"GetXmlDoc_\" + Url,"
+    },
+    "leakage_check": {
+      "nouns": [
+        "legacy",
+        "transform",
+        "remote",
+        "feed",
+        "copy",
+        "period",
+        "flush"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1992,
+      "decl_line": 1539,
+      "doc_comment_lines": 6,
+      "body_lines": 15
+    },
+    "why": "~L1539 of a 1,992-line static helper; the 'independent of publishing' fact is in the param doc.",
+    "confidence": "high",
+    "drafting_notes": "umbraco.MacroEngines may expose similar helpers; question says XSLT which maps to umbraco.library."
+  },
+  {
+    "id": "c51",
+    "question": "Where is umbraco.library.ChangeContentType, the XSLT helper that sets Response.ContentType?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/library.cs"
+    ],
+    "category": "navigation",
+    "lsp_trivial": true,
+    "subsystem": "Legacy layer",
+    "discriminator": "short-member",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/library.cs",
+      "lines": "L1683-L1693",
+      "member": "library.ChangeContentType",
+      "snippet": "HttpContext.Current.Response.ContentType = MimeType;"
+    },
+    "leakage_check": {
+      "nouns": [],
+      "found_as_identifier": [],
+      "skipped": "navigation"
+    },
+    "structural": {
+      "file_lines": 1992,
+      "decl_line": 1687,
+      "doc_comment_lines": 4,
+      "body_lines": 4
+    },
+    "why": "4-line body between Request(key) and ContextKey(key), ~L1687 of 1,992.",
+    "confidence": "high",
+    "drafting_notes": "Models/Content.cs and Models/Media.cs have unrelated ChangeContentType methods (change document type); the question qualifies with umbraco.library and Response.ContentType."
+  },
+  {
+    "id": "c52",
+    "question": "How does the admin landing screen pull in outside news without letting it be abused to fetch arbitrary websites?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Legacy layer",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/umbraco/dashboard/FeedProxy.aspx.cs",
+      "lines": "L18-L60",
+      "member": "FeedProxy.Page_Load",
+      "snippet": "if (feedProxyXml?.SelectSingleNode($\"//allow[@host = '{requestUri.Host}']\") != null && (requestUri.Port == 80 || requestUri.Port == 443))"
+    },
+    "leakage_check": {
+      "nouns": [
+        "admin",
+        "landing",
+        "screen",
+        "news",
+        "arbitrary",
+        "website"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 62,
+      "decl_line": 18,
+      "doc_comment_lines": 0,
+      "body_lines": 40
+    },
+    "why": "Security-relevant allow-list logic in a WebForms code-behind.",
+    "confidence": "high",
+    "drafting_notes": "Allow-list is config/feedProxy.config (not indexed) and the page markup is FeedProxy.aspx (not indexed)."
+  },
+  {
+    "id": "c53",
+    "question": "When old v4-style code asks a wrapper to go live, which old-style notifications fire, and where is the real work passed on to?",
+    "correct_files": [
+      "src/umbraco.cms/businesslogic/web/Document.cs"
+    ],
+    "category": "semantic",
+    "lsp_trivial": false,
+    "subsystem": "Legacy layer",
+    "discriminator": "long-doc",
+    "evidence": {
+      "file": "src/umbraco.cms/businesslogic/web/Document.cs",
+      "lines": "L784-L822",
+      "member": "Document.PublishWithResult",
+      "snippet": "var result = ApplicationContext.Current.Services.ContentService.PublishWithStatus(ContentEntity, u.Id);"
+    },
+    "leakage_check": {
+      "nouns": [
+        "v4",
+        "code",
+        "wrapper",
+        "live",
+        "notification",
+        "work"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1924,
+      "decl_line": 798,
+      "doc_comment_lines": 13,
+      "body_lines": 1
+    },
+    "why": "13-line doc comment on an obsolete wrapper ~L798 of a 1,924-line legacy class.",
+    "confidence": "high",
+    "drafting_notes": "Also deep-in-large-class; counted as long-doc. Evidence range spans the public overload (13-line doc) and the internal overload directly below it, which holds the snippet."
+  },
+  {
+    "id": "c54",
+    "question": "The old 'rebuild everything' admin dialog: what does it actually do, and how does it make every machine in a farm reload afterwards?",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/republish.aspx.cs",
+      "src/Umbraco.Web/umbraco.presentation/library.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Legacy layer",
+    "discriminator": "short-member",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/library.cs",
+      "lines": "L201-L207",
+      "member": "library.RefreshContent",
+      "snippet": "DistributedCache.Instance.RefreshAllPageCache();"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/umbraco.presentation/umbraco/dialogs/republish.aspx.cs",
+        "lines": "L25-L57",
+        "member": "republish.go",
+        "snippet": "library.RefreshContent();"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "admin",
+        "dialog",
+        "machine",
+        "farm",
+        "reload"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1992,
+      "decl_line": 204,
+      "doc_comment_lines": 3,
+      "body_lines": 1
+    },
+    "why": "Dialog calls RePublishAll / RegeneratePreviews then library.RefreshContent (1-line body) to broadcast a full refresh.",
+    "confidence": "medium",
+    "drafting_notes": "Short-member: RefreshContent's neighbours are PublishSingleNode and RePublishNodes, which are publish helpers, not strictly unrelated. Also deep-in-large-class (~L204 of 1,992). Dialog markup republish.aspx is not indexed."
+  },
+  {
+    "id": "c55",
+    "question": "How does the old rich-text box render an embedded widget while someone is editing? It appears to make a loopback hop to itself carrying the author's login.",
+    "correct_files": [
+      "src/Umbraco.Web/umbraco.presentation/macro.cs",
+      "src/Umbraco.Web/umbraco.presentation/umbraco/macroResultWrapper.aspx.cs"
+    ],
+    "category": "cross-cutting",
+    "lsp_trivial": false,
+    "subsystem": "Legacy layer",
+    "discriminator": "none",
+    "evidence": {
+      "file": "src/Umbraco.Web/umbraco.presentation/macro.cs",
+      "lines": "L1690-L1783",
+      "member": "macro.MacroContentByHttp",
+      "snippet": "string url = string.Format(\"{0}://{1}:{2}{3}/macroResultWrapper.aspx?{4}\", protocol,"
+    },
+    "evidence_additional": [
+      {
+        "file": "src/Umbraco.Web/umbraco.presentation/umbraco/macroResultWrapper.aspx.cs",
+        "lines": "L23-L49",
+        "member": "macroResultWrapper.Page_Load",
+        "snippet": "Control c = m.renderMacro(attributes, p.Elements, p.PageID);"
+      }
+    ],
+    "leakage_check": {
+      "nouns": [
+        "rich-text",
+        "box",
+        "embedded",
+        "widget",
+        "editing",
+        "loopback",
+        "hop",
+        "author",
+        "login"
+      ],
+      "found_as_identifier": []
+    },
+    "structural": {
+      "file_lines": 1927,
+      "decl_line": 1690,
+      "doc_comment_lines": 0,
+      "body_lines": 91
+    },
+    "why": "Loopback HTTP request from macro.cs to a WebForms page that renders the macro.",
+    "confidence": "high",
+    "drafting_notes": "macroResultWrapper.aspx markup not indexed. Callers in the TinyMCE legacy plugin (JS) not indexed."
+  }
+]
