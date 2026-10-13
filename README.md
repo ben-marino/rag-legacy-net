@@ -1,90 +1,99 @@
-# RagAblation
+# rag-legacy-net
 
-Chunking ablation over Umbraco CMS 7 — retrieval eval harness. Indexes the C# source of
-Umbraco CMS under two chunking strategies and measures retrieval recall@5 against a fixed
-golden question set.
+A retrieval ablation over a legacy .NET Framework codebase, built to answer one question honestly: does syntax-aware chunking beat fixed-window chunking for code retrieval?
 
-## Corpus
+It didn't, at first. Then it did, once the ranking bug was fixed. The repo contains the harness, the frozen test set, the per-question results for every run, and the method documents that explain how the test set was made and reviewed.
 
-`corpus/Umbraco-CMS/` — clone of the [`release-7.15.11`](https://github.com/umbraco/Umbraco-CMS/releases/tag/release-7.15.11)
-tag. Only `src/**/*.cs` is indexed, excluding paths containing `/Umbraco.Tests`,
-`/Umbraco.Web.UI.Client/`, `/obj/`, `/bin/`.
+Written up on LinkedIn as a three-part series; this is the code behind it.
 
-## Token approximation
+## Headline numbers
 
-Token counts are approximated as `chars / 4`. This is a rough stand-in for a real tokeniser
-(e.g. tiktoken); it is used consistently for windowing, oversized-member splitting, and the
-`approx_tokens` values reported by `index`/stored in the database — not for anything billed
-by the embeddings API.
+Corpus: [Umbraco CMS `release-7.15.11`](https://github.com/umbraco/Umbraco-CMS/releases/tag/release-7.15.11), 3,292 C# source files. Embeddings: `text-embedding-3-small`. Test set: 40 questions with known-correct source files, frozen in git before the index existed.
 
-## Embedding model
+| strategy | chunks | index time | recall@5 | recall@5 with file dedupe |
+|---|---|---|---|---|
+| 512-token windows | 10,244 | 3m 23s | 60.0% | 65.0% |
+| Roslyn per-member | 32,771 | 6m 56s | 62.5% | **70.0%** |
 
-`text-embedding-3-small` (1536 dimensions) via the OpenAI embeddings API, requested in
-batches of 100 inputs.
+The chunking strategy moved recall by one question in forty. Collapsing retrieved chunks to distinct files *before* cutting to top-k moved it by two questions for fixed windows and three for Roslyn, with zero regressions on either strategy. Full breakdown by category in [`data/results-dedupe/compare.txt`](data/results-dedupe/compare.txt).
 
-## Chunking strategies
+The mechanism: recall is measured per file, but the top-k cut was happening per chunk. Roslyn produces 3× the chunks, so a single large class could fill all five slots with its own members and push the correct file to rank 6. Median distinct files in the top 50 chunks: 32 for fixed windows, 22 for Roslyn.
 
-- **fixed512** — fixed windows of ~512 approx tokens with ~64 tokens of overlap over the raw
-  file text, split only on line boundaries.
-- **roslyn** — one chunk per member declaration (fields grouped into one chunk per type) plus
-  one type-level chunk per class/struct/interface/enum, produced from
-  `CSharpSyntaxTree.ParseText` (syntax only, no compilation). Oversized members are split at
-  top-level statement boundaries. A handful of real methods in this corpus carry a signature
-  or XML doc comment long enough on its own to threaten the 600-approx-token hard cap on a
-  chunk (e.g. 14-parameter overloads with default-value expressions); those two header fields
-  are truncated defensively so every chunk — including its header — stays under the cap.
+## What's here
 
-## Environment
+```
+src/RagAblation.Chunking/   FixedChunker, RoslynChunker — no I/O
+src/RagAblation/            index · eval · diff · compare commands, pgvector store, embedding client
+tests/                      45 xunit tests
+data/golden.json            the frozen 40-question test set (do not edit after the first eval)
+data/golden.candidates.json the 55 drafted candidates it was cut from
+data/question-embeddings.json  cached question vectors — what makes the numbers reproducible
+data/results-pre-dedupe/    eval output before the dedupe change
+data/results-dedupe/        eval output after, both modes, plus compare.txt
+docs/golden-set-method.md   how the candidates were drafted, with per-question provenance
+docs/golden-set-review.md   how they were reviewed and cut to 40, with a change log
+docs/reproducibility.md     embedding non-determinism and why the cache exists
+docs/specs/                 the specs each build step was run from
+scripts/                    disagreement report, regression check
+```
 
-- macOS, .NET 10 SDK
-- Postgres 17 with pgvector, installed via Homebrew, running as a local service on
-  `localhost:5432`, database `rag`. Connection string from env `RAG_PG`, defaulting to
-  `Host=localhost;Database=rag;Username=benmarino`.
-- `OPENAI_API_KEY` in env.
+## Reproducing the numbers
 
-The app creates the `vector` extension and the `chunks_fixed512` / `chunks_roslyn` tables on
-first run if they don't exist.
+Requirements: .NET 10 SDK, Postgres 16+ with the [pgvector](https://github.com/pgvector/pgvector) extension, `jq` for the scripts, an OpenAI API key for the index step (the eval step runs from the cached question vectors and needs no key).
+
+```bash
+git clone --depth 1 --branch release-7.15.11 https://github.com/umbraco/Umbraco-CMS corpus/Umbraco-CMS
+
+createdb rag
+psql rag -c "CREATE EXTENSION IF NOT EXISTS vector;"
+export RAG_PG="Host=localhost;Database=rag;Username=$USER"   # default if unset
+export OPENAI_API_KEY=sk-...
+
+dotnet test
+dotnet run --project src/RagAblation -- index --strategy both          # ~10 min, ~$1 in embeddings
+dotnet run --project src/RagAblation -- eval  --strategy both
+dotnet run --project src/RagAblation -- eval  --strategy both --dedupe
+dotnet run --project src/RagAblation -- compare
+scripts/check-pre-dedupe.sh                                              # must report IDENTICAL for both
+```
+
+`check-pre-dedupe.sh` confirms the no-flag eval reproduces the committed snapshot exactly. If it doesn't, something has drifted — see `docs/reproducibility.md` before trusting any other number.
+
+Re-indexing produces new chunk embeddings, which can shift near-tied rankings by a hair. The *question* vectors are cached and committed, so the numbers in this README are what you should get; if you re-embed the questions with `--refresh-embeddings`, you are accepting a new baseline.
 
 ## Commands
 
-```
-dotnet run --project src/RagAblation -- index --strategy fixed512|roslyn|both
-dotnet run --project src/RagAblation -- eval  --strategy fixed512|roslyn|both [--k 5] [--dedupe] [--refresh-embeddings]
-dotnet run --project src/RagAblation -- diff [--dedupe]
-dotnet run --project src/RagAblation -- compare [--k 5]
-```
+| command | what it does |
+|---|---|
+| `index --strategy fixed512\|roslyn\|both` | chunk, embed, insert. Truncates the strategy's table first. Doesn't read the golden set. |
+| `eval --strategy … [--k 5] [--dedupe] [--refresh-embeddings]` | embed each question (from cache), retrieve top-k, score a hit if any correct file is among the top-k files. Writes `data/results/{strategy}[.dedupe].json`. |
+| `diff [--dedupe]` | questions where the two strategies disagree, with per-category recall. |
+| `compare [--k 5]` | the strategy × dedupe table, which questions moved, and the distinct-files distribution. |
+| `scripts/disagreements.sh [--dedupe]` | each disagreement with both top-5 lists and the correct files marked. |
 
-- `index` chunks, embeds, and inserts. Idempotent — truncates the strategy's table first.
-  Does not read `data/golden.json`.
-- `eval` embeds each question in `data/golden.json`, takes the top-k chunks by cosine
-  distance, and counts a hit if any of the question's `correct_files` appears among the
-  top-k chunks' file paths. Writes `data/results/{strategy}.json` and prints recall@k
-  overall, per category, and split by `lsp_trivial`. Question vectors are cached in
-  `data/question-embeddings.json` (keyed by question id, with the model name); only ids
-  missing from the cache or embedded with a different model are fetched. `--refresh-embeddings`
-  re-fetches everything.
-- `eval --dedupe` is a retrieval-time change only (no re-index): it pulls the top
-  `max(50, 10k)` chunks, collapses them to distinct files in first-seen order (each file ranks
-  where its best chunk ranks), and scores the first k files. If fewer than k distinct files
-  exist in the top N it keeps the short list and prints a warning to stderr, without widening
-  N. Results go to `data/results/{strategy}.dedupe.json`; without the flag the original
-  `{strategy}.json` is written and the numbers are unchanged. Both modes also record the
-  retrieved chunk list (`TopKChunks`: file, rank, distance — all N of them under dedupe),
-  `DistinctFilesInTopN` and the `Dedupe` flag per question.
-- `diff` requires both eval runs to have completed. Prints a markdown table of questions
-  where the two strategies disagree, per-category recall, and the two "only" question-id
-  lists. `diff --dedupe` reads the `.dedupe.json` pair.
-- `compare` reads all four results files and prints one strategy × dedupe recall table
-  (overall, per category, per `lsp_trivial`), the hit→miss / miss→hit question ids for each
-  strategy when dedupe is switched on, and the `DistinctFilesInTopN` distribution.
-- `scripts/disagreements.sh [--dedupe]` prints each disagreement with both strategies' top-5
-  files and the correct ones marked.
+`--dedupe` is retrieval-time only: pull the top `max(50, 10k)` chunks, collapse to distinct files keeping best rank, take the first k. No re-index.
 
-`data/golden.json` is written by hand, not generated — `eval` and `diff` fail with a clear
-message if it's missing or malformed.
+## How the test set was made
 
-## Tests
+The 40 questions were not written by hand from scratch. They were **drafted by Claude Code from the source**, working backwards from code to question so that every `correct_files` entry was verified by construction, with a per-question provenance trail (file, line range, verbatim evidence snippet, leakage check). A second Claude Code pass reviewed them against a written policy and cut 55 to 40 with a change log. The highest-judgement items and every semantic question were then checked by hand before the set was frozen.
 
-```
-dotnet test
-```
+Both passes were forbidden from running the retriever, reading any results, or touching the chunkers, so the questions couldn't be tuned to the system. The full trail is in `docs/golden-set-method.md` and `docs/golden-set-review.md`.
+
+Questions are tagged `navigation` / `semantic` / `cross-cutting`, and `lsp_trivial` marks the ones a language server would answer in one keystroke — so you can see where retrieval earns its keep and where it's just a slower go-to-definition.
+
+## Chunking strategies
+
+- **fixed512** — ~512 approx-token windows with ~64 overlap, split on line boundaries.
+- **roslyn** — one chunk per member declaration plus one type-level chunk, from `CSharpSyntaxTree.ParseText` (syntax only, no compilation, so it works on code that no longer builds). Each chunk carries a header: file path, namespace, type, signature, XML doc comment. Oversized members split at statement boundaries.
+
+Tokens are approximated as `chars / 4` throughout. It's stated so you can account for it; it isn't used for anything billed.
+
+## Known gaps
+
+- Only C# is indexed. 7 of the 40 questions (13 of the 55 candidates) touch config, markup or JS in passing; in every case the `.cs` file alone answers the question, but a retrieval system over the whole repo would be a different experiment.
+- 9 questions are missed by both strategies under dedupe. That's the next ablation (hybrid lexical, then reranking), not this one.
+- One deliberate leakage exception (q39, "macro") is documented in the review doc.
+
+## Licence
+
+MIT. The Umbraco source is cloned at run time and is not part of this repository; it carries its own licence.
