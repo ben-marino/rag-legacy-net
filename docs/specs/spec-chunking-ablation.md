@@ -17,7 +17,7 @@ The app creates the `vector` extension and both tables on first run if they don'
 ## Environment
 
 - macOS, .NET 10 SDK, Docker
-- Postgres 17 with pgvector, installed via Homebrew and running as a service on localhost:5432. Database `rag`. Connection string from env `RAG_PG`, defaulting to `Host=localhost;Database=rag;Username=benmarino` (no password — Homebrew Postgres trusts local connections).
+- Postgres 17 with pgvector, installed via Homebrew and running as a service on localhost:5432. Database `rag`. Connection string from env `RAG_PG`, defaulting to `Host=localhost;Database=rag;Username=<your macOS username>` (no password — Homebrew Postgres trusts local connections).
 - `OPENAI_API_KEY` in env. Embedding model `text-embedding-3-small`, 1536 dims. Batch requests at 100 inputs.
 - Corpus at `corpus/Umbraco-CMS/` (clone of the `release-7.15.11` tag). Index `src/**/*.cs`, excluding paths containing `/Umbraco.Tests`, `/Umbraco.Web.UI.Client/`, `/obj/`, `/bin/`.
 
