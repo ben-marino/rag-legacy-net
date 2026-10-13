@@ -1,6 +1,6 @@
 # Golden set candidates: method and verification
 
-This document goes with `data/golden.candidates.json`, which holds 55 **candidate** questions for the retrieval eval. Nothing here is final. A human reviewer cuts the list to 40 and writes `data/golden.json` by hand.
+This document goes with `data/golden.candidates.json`, which holds 55 **candidate** questions for the retrieval eval. Nothing here is final. The review pass that cut the list to 40, with its change log, is recorded in [`docs/golden-set-review.md`](golden-set-review.md); `data/golden.json` was written from its output after a human check.
 
 **How to review one candidate (target: under 3 minutes).**
 
@@ -9,7 +9,7 @@ This document goes with `data/golden.candidates.json`, which holds 55 **candidat
 3. For cross-cutting questions, repeat step 1 for each entry in `evidence_additional`, one per extra correct file.
 4. Read `drafting_notes` for alternative files I considered and rejected. Most disagreements will be about whether one of those should be added to `correct_files`.
 
-**Fields to strip before copying into `golden.json`.** Only `id`, `question`, `correct_files`, `category` and `lsp_trivial` are in the SPEC schema. Everything else is review scaffolding: `subsystem`, `discriminator`, `evidence`, `evidence_additional`, `leakage_check`, `structural`, `why`, `confidence`, `drafting_notes`. I added two fields beyond the brief's object shape:
+**Fields to strip before copying into `golden.json`.** Only `id`, `question`, `correct_files`, `category` and `lsp_trivial` are in the [SPEC schema](specs/spec-chunking-ablation.md). Everything else is review scaffolding: `subsystem`, `discriminator`, `evidence`, `evidence_additional`, `leakage_check`, `structural`, `why`, `confidence`, `drafting_notes`. I added two fields beyond the brief's object shape:
 
 - `evidence_additional`: evidence for the second and third file of a cross-cutting question.
 - `structural`: file length, declaration line, doc-comment and body length, all computed from the source.
@@ -47,7 +47,7 @@ Indexed `.cs` files per project:
   28 umbraco.controls        1 SolutionInfo.cs (src root)
 ```
 
-**Spec file name.** The brief says "SPEC.md, section Golden set format". There is no `SPEC.md` in the repo. The section exists in `spec-chunking-ablation.md` (heading at line 88), and I used that schema.
+**Spec file name.** The brief says "SPEC.md, section Golden set format". There is no `SPEC.md` in the repo. The section exists in [`spec-chunking-ablation.md`](specs/spec-chunking-ablation.md) (heading at line 88), and I used that schema.
 
 ## 2. Orientation: subsystem map
 
